@@ -77,45 +77,53 @@
       <div class="row justify-content-center mb-3">
         <div class="col-md-6">
           <div class="btn-group type-of-orders" role="group" aria-label="Basic radio toggle button group" style="border-color: red;">
-            <input type="radio" class="btn-check" name="flight-type" id="domestic-flight" autocomplete="off">
-            <label class="btn btn-outline-primary" for="domestic-flight">
+            <input type="radio" class="btn-check" name="flight-type" id="req" autocomplete="off">
+            <label class="btn btn-outline-primary" for="req">
               <i class="bi bi-clipboard-data" style="color: orange; font-size: larger;"></i> ثبت نام اولیه</label>
   
             <input type="radio" class="btn-check" name="flight-type" id="verification" autocomplete="off">
-            <label class="btn btn-outline-primary" for="domestic-flight">
+            <label class="btn btn-outline-primary" for="verification">
               <i class="bi bi-clipboard-data" style="color: orange; font-size: larger;"></i> شناسایی</label>
 
-            <input type="radio" class="btn-check" name="flight-type" id="international-flight" autocomplete="off">
-            <label class="btn btn-outline-primary" for="international-flight">
+            <input type="radio" class="btn-check" name="flight-type" id="trust" autocomplete="off">
+            <label class="btn btn-outline-primary" for="trust">
+              <i class="bi bi-moisture" style="color: orange; font-size: larger;"></i>راستی آزمایی</label>
+  
+            <input type="radio" class="btn-check" name="flight-type" id="test" autocomplete="off">
+            <label class="btn btn-outline-primary" for="test">
+              <i class="bi bi-moisture" style="color: orange; font-size: larger;"></i>برگه سنجش</label>
+
+              <input type="radio" class="btn-check" name="flight-type" id="visit" autocomplete="off">
+            <label class="btn btn-outline-primary" for="visit">
               <i class="bi bi-mic" style="color: orange; font-size: larger;"></i>مصاحبه </label>
   
-            <input type="radio" class="btn-check" name="flight-type" id="train" autocomplete="off">
-            <label class="btn btn-outline-primary" for="train">
-              <i class="bi bi-moisture" style="color: orange; font-size: larger;"></i>سنجش</label>
-  
-            <input type="radio" class="btn-check" name="flight-type" id="bus" autocomplete="off">
-            <label class="btn btn-outline-primary" for="bus">
-              <i class="bi bi-database-add" style="color: orange; font-size: larger;"></i>مالی</label>
+            <input type="radio" class="btn-check" name="flight-type" id="mali" autocomplete="off">
+            <label class="btn btn-outline-primary" for="mali">
+              <i class="bi bi-database-add" style="color: orange; font-size: larger;"></i>حمایت و توانمند سازی</label>
             
-            <input type="radio" class="btn-check" name="flight-type" id="tour" autocomplete="off">
-            <label class="btn btn-outline-primary" for="tour">
+            <input type="radio" class="btn-check" name="flight-type" id="enfagh" autocomplete="off">
+            <label class="btn btn-outline-primary" for="enfagh">
               <i class="bi bi-heart-half" style="color: orange; font-size: larger;"></i>انفاق</label>
   
             <input type="radio" class="btn-check" name="flight-type" id="hotel" autocomplete="off">
             <label class="btn btn-outline-primary" for="hotel">
               <i class= "bi bi-magic" style="color: orange; font-size: larger;"></i>فرهنگی</label>
+
+            <input type="radio" class="btn-check" name="flight-type" id="search" autocomplete="off">
+            <label class="btn btn-outline-primary" for="search">
+              <i class= "bi bi-magic" style="color: orange; font-size: larger;"></i>استعلام وضعیت</label>
             
           </div>
         </div>
       </div>
 
       <!-- فرم جستجوی درخواست جدید -->
-      <form id="domestic-flight-form" class="row justify-content-center mb-3" style="display: none;">
+      <form id="req-form" class="row justify-content-center mb-3" style="display: none;">
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">ثبت نام اولیه   </h5>
-              <form id="search-form">
+              <form id="search-req-form">
                 <div class="mb-3">
 
                   <label for="first-name-new-order" class="form-label" >نام</label>
@@ -128,8 +136,13 @@
                 </div>
                 <div class="mb-3">
                   <label for="last_name_new_order" class="form-label">نام پدر</label>
-                  <input type="text" class="form-control" id="fathername-new-order-id" placeholder="مثال: محمد" required>
+                  <input type="text" class="form-control" id="fathername-new-req-id" placeholder="مثال: محمد" required>
                 </div>
+
+                <div class="mb-3">
+                  <label for="phone-number" class="form-label">کد ملی</label>
+                  <input type="text" class="form-control" id="nationalcode-req-id" name="phone-number" required>
+              </div>
                 <div class="mb-3">
                   <label for="new-order-type" class="form-label">سال تولد</label>
                   <select class="form-control" id="birth-req-id">
@@ -207,6 +220,7 @@
                   <label for="phone-number" class="form-label">شماره همراه</label>
                   <input type="text" class="form-control" id="phone-req-id" name="phone-number" required>
               </div>
+
               <div class="mb-3">
                 <label for="last_name_new_order" class="form-label">نام معرف</label>
                 <input type="text" class="form-control" id="representative-req-id" placeholder="مثال: مشهدی">
@@ -262,38 +276,14 @@
 
 
 
-      <!-- فرم درخواست مصاحبه -->
-      <form id="international-flight-form" class="row justify-content-center mb-3" style="display: none;">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">درخواست مصاحبه</h5>
-              <form id="search-form">
-                <div class="mb-3">
-                  <label for="first-name-visit" class="form-label">نام تستی</label>
-                  <input type="text" class="form-control" id="first-name-visit-id" placeholder="مثال: شمیم" required>
-                </div>
-  
-                <div class="mb-3">
-                  <label for="date" class="form-label">تاریخ</label>
-                  <input type="date" class="form-control" id="date" required>
-                </div>
-  
-  
-                <button type="submit" class="btn btn-primary">جستجو</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </form>
-      
+            
       <!-- فرم راستی آزمایی -->
-      <form id="train-form" class="row justify-content-center mb-3" style="display: none;">
+      <form id="trust-form" class="row justify-content-center mb-3" style="display: none;">
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">تست</h5>
-              <form id="search-form">
+              <h5 class="card-title">راستی آزمایی</h5>
+              <form id="search-trust-form">
                 <div class="mb-3">
                   <label for="first-name-trust" class="form-label">نام تستی</label>
                   <input type="text" class="form-control" id="fisrt-name-trust-id" placeholder="مثال: سحر" required>
@@ -312,57 +302,321 @@
         </div>
       </form>
 
-
-      <!-- فرم مالی -->
-       <form id="bus-form" class="row justify-content-center mb-3" style="display: none;">
+       <!-- فرم برگه سنجش -->
+      <form id="test-form" class="row justify-content-center mb-3" style="display: none;">
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">مالی</h5>
-              <form id="search-form">
+              <h5 class="card-title">برگه سنجش</h5>
+              <form id="search-test-form">
+              
                 <div class="mb-3">
-                  <label for="mali" class="form-label">نام تستی</label>
-                  <input type="text" class="form-control" id="mali-first-name-id" placeholder="مثال: شمیم" required>
+                  <label for="phone-number" class="form-label">کد ملی</label>
+                  <input type="text" class="form-control" id="nationalcode-req-id" name="phone-number" required>
                 </div>
   
-                <div class="mb-3">
-                  <label for="mali-date" class="form-label">تاریخ</label>
-                  <input type="date" class="form-control" id="mali-date-id" required>
-                </div>
   
+                  <button type="submit" class="btn btn-primary" id="test-search">جستجو</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      <form id="test-fill-form" class="row justify-content-center mb-3" style="display: none;">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">برگه سنجش</h5>
+              <form id="search-trust-form">
+
+                <!-- وارد کردن نام داده شده از شمیم اینجا انجام شود -->
+
+                <div class="mb-3">
+                  <label for="new-order-type" class="form-label">تحصیلات</label>
+                  <select class="form-control" id="education-id">
+                    <option>بی سواد</option>
+                    <option>پنجم ابتدایی</option>
+                    <option>سیکل</option>
+                    <option>دیپلم</option>
+                    <option>کارشناسی</option>
+                    <option>ارشد</option>                      <option>دکتری</option>
+                    <option>حوزوی سطح 1 و 2</option>
+                    <option>حوزوی سطح 3 و 4</option>
+                  </select>
+                </div>
+
+
+              <div class="mb-3">
+                <label for="phone-number" class="form-label"></label>
+                <input type="text" class="form-control" id="nationalcode-req-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone-number" class="form-label"> ملی</label>
+                  <input type="text" class="form-control" id="nationalcode-req-id" name="phone-number" required>
+              </div>
+    
                 <button type="submit" class="btn btn-primary">جستجو</button>
+              </form>
+              </div>
+            </div>
+          </div>
+      </form>
+
+  <!-- فرم درخواست مصاحبه -->
+      <form id="visit-form" class="row justify-content-center mb-3" style="display: none;">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">درخواست مصاحبه</h5>
+              <form id="search-visit-form">
+                <div class="mb-3">
+                  <label for="phone-number" class="form-label">کد ملی</label>
+                  <input type="text" class="form-control" id="nationalcode-visit-id" name="phone-number" required>
+                </div>
+  
+                  <button type="submit" class="btn btn-primary" id="visit-search">جستجو</button>
+  
               </form>
             </div>
           </div>
         </div>
       </form>
+      <!-- تکمیل اطلاعات مصاحبه -->
+      <form id="resut-evaluation-form" class="row justify-content-center mb-3" style="display: none;">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">فرم مصاحبه</h5>
+              <form id="interview-form">
+
+                <!-- وارد کردن نام داده شده از شمیم اینجا انجام شود -->
+
+                <div class="mb-3">
+                  <label for="new-order-type" class="form-label">نتیجه ارزیابی</label>
+                  <select class="form-control" id="resault-interview-id">
+                    <option>سطح 1</option>
+                    <option>سطح 2</option>
+                    <option>سطح 3</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="interview-date" class="form-label">تاریخ</label>
+                  <input type="date" class="form-control" id="date-tinterview-id" required>
+                </div>
+
+
+              <div class="mb-3">
+                <label for="phone-number" class="form-label">ٌصداقت</label>
+                <input type="text" class="form-control" id="honesty-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone-number" class="form-label">ٌشاخص خانواده</label>
+                <input type="text" class="form-control" id="family-level-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone-number" class="form-label">ٌشاخص رشد</label>
+                <input type="text" class="form-control" id="kanin-roshd-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone-number" class="form-label">ٌسبد کالا</label>
+                <input type="text" class="form-control" id="sabad-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="new-order-type" class="form-label">قرض الحسنه</label>
+                <select class="form-control" id="hasane-id">
+                  <option>بله</option>
+                  <option>خیر</option>
+                </select>
+              </div>
+              <label for="new-order-type" class="form-label">فرهنگی</label>
+              <select class="form-control" id="cultural-id">
+                <option>بله</option>
+                <option>خیر</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌنسبت درآمذ ماهیانه به هزینه ماهیانه</label>
+              <input type="text" class="form-control" id="income-cost-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌتوضیحات ضروری</label>
+              <input type="text" class="form-control" id="neccesary-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌتوصیه می شود اسناد مندرج در این بخش از متقاضی اخذ شود</label>
+              <input type="text" class="form-control" id="asnad-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌمصاحبه گر اول</label>
+              <input type="text" class="form-control" id="interviewer1-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌمصاحبه گر دوم</label>
+              <input type="text" class="form-control" id="interviewer2-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">مصاحبه گر سوم</label>
+              <input type="text" class="form-control" id="interviewer3-id" name="phone-number" required>
+            </div>
+    
+                <button type="submit" class="btn btn-primary">جستجو</button>
+              </form>
+              </div>
+            </div>
+          </div>
+      </form>
+
+
+      <!-- فرم حمایت و توانمند سازی -->
+       <form id="mali-form" class="row justify-content-center mb-3" style="display: none;">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">فرم حمایت و توانمند سازی</h5>
+              <form id="mali-search-form">
+                <div class="mb-3">
+                  <label for="phone-number" class="form-label">کد ملی</label>
+                  <input type="text" class="form-control" id="nationalcode-mali-id" name="phone-number" required>
+                </div>
+  
+  
+                  <button type="submit" class="btn btn-primary" id="mali-search">جستجو</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- تکمیل اطلاعات حمایت و توانمندسازی -->
+      <form id="-form" class="row justify-content-center mb-3" style="display: none;">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">فرم مصاحبه</h5>
+              <form id="interview-form">
+
+                <!-- وارد کردن نام داده شده از شمیم اینجا انجام شود -->
+
+                <div class="mb-3">
+                  <label for="new-order-type" class="form-label">نتیجه ارزیابی</label>
+                  <select class="form-control" id="resault-interview-id">
+                    <option>سطح 1</option>
+                    <option>سطح 2</option>
+                    <option>سطح 3</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="new-order-type" class="form-label">نتیجه ارزیابی</label>
+                  <select class="form-control" id="resault-interview-id">
+                    <option>سطح 1</option>
+                    <option>سطح 2</option>
+                    <option>سطح 3</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="new-order-type" class="form-label">نتیجه ارزیابی</label>
+                  <select class="form-control" id="resault-interview-id">
+                    <option>سطح 1</option>
+                    <option>سطح 2</option>
+                    <option>سطح 3</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="interview-date" class="form-label">تاریخ</label>
+                  <input type="date" class="form-control" id="date-tinterview-id" required>
+                </div>
+
+
+              <div class="mb-3">
+                <label for="phone-number" class="form-label">ٌصداقت</label>
+                <input type="text" class="form-control" id="honesty-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone-number" class="form-label">ٌشاخص خانواده</label>
+                <input type="text" class="form-control" id="family-level-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone-number" class="form-label">ٌشاخص رشد</label>
+                <input type="text" class="form-control" id="kanin-roshd-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="phone-number" class="form-label">ٌسبد کالا</label>
+                <input type="text" class="form-control" id="sabad-id" name="phone-number" required>
+              </div>
+              <div class="mb-3">
+                <label for="new-order-type" class="form-label">قرض الحسنه</label>
+                <select class="form-control" id="hasane-id">
+                  <option>بله</option>
+                  <option>خیر</option>
+                </select>
+              </div>
+              <label for="new-order-type" class="form-label">فرهنگی</label>
+              <select class="form-control" id="cultural-id">
+                <option>بله</option>
+                <option>خیر</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌنسبت درآمذ ماهیانه به هزینه ماهیانه</label>
+              <input type="text" class="form-control" id="income-cost-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌتوضیحات ضروری</label>
+              <input type="text" class="form-control" id="neccesary-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌتوصیه می شود اسناد مندرج در این بخش از متقاضی اخذ شود</label>
+              <input type="text" class="form-control" id="asnad-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌمصاحبه گر اول</label>
+              <input type="text" class="form-control" id="interviewer1-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">ٌمصاحبه گر دوم</label>
+              <input type="text" class="form-control" id="interviewer2-id" name="phone-number" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone-number" class="form-label">مصاحبه گر سوم</label>
+              <input type="text" class="form-control" id="interviewer3-id" name="phone-number" required>
+            </div>
+    
+                <button type="submit" class="btn btn-primary">جستجو</button>
+              </form>
+              </div>
+            </div>
+          </div>
+      </form>
+
   
 
       <!-- درخواست انفاق -->
-      <form id="tour-form" class="row justify-content-center mb-3" style="display: none;">
+      <form id="enfagh-form" class="row justify-content-center mb-3" style="display: none;">
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">فرم درخواست نیکوکاری</h5>
-              <form id="tour-search-form">
+              <form id="enfagh-search-form">
                 <div class="mb-3">
                   <label for="origin" class="form-label">نام</label>
-                  <input type="text" class="form-control" id="first_name" placeholder="مثال: زهرا" required>
+                  <input type="text" class="form-control" id="firstname-enagh-id" placeholder="مثال: زهرا" required>
                 </div>
   
                 <div class="mb-3">
                   <label for="destination" class="form-label">نام خوانوادگی</label>
-                  <input type="text" class="form-control" id="last_name" placeholder="مثال: مشهدی" required>
+                  <input type="text" class="form-control" id="lastname-enfagh-id" placeholder="مثال: مشهدی" required>
                 </div>
   
                 <div class="mb-3">
                   <label for="date" class="form-label">تاریخ</label>
-                  <input type="date" class="form-control" id="date" required>
+                  <input type="date" class="form-control" id="enfagh-date" required>
                 </div>
 
                 <div class="mb-3">
                   <label for="passengers" class="form-label">شماره تلفن همراه</label>
-                  <input type="tel" class="form-control" id="number" placeholder="مثال: 09151234567" required>
+                  <input type="tel" class="form-control" id="enfagh-number-id" placeholder="مثال: 09151234567" required>
                 </div>
 
                 <div class="mb-3">
@@ -416,11 +670,33 @@
         </div>
       </form>
   
-      <!-- فرم جستجوی ویلا و اقامتگاه -->
-              </div>
-    <!-- </form> -->
-  
-
+    
+      <!-- </div>   -->
+              <!-- جستجو -->
+              <form id="search-form" class="row justify-content-center mb-3" style="display: none;">
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">استعلام وضعیت متقاضی</h5>
+                      <form id="search-form-id">
+                        
+                        <div class="mb-3">
+                          <label for="destination" class="form-label">نام</label>
+                          <input type="text" class="form-control" id="search_firstname" placeholder="مثال: محمد" required>
+                        </div>
+        
+                        <div class="mb-3">
+                          <label for="destination" class="form-label">نام خانوادگی</label>
+                          <input type="text" class="form-control" id="search_last_name" placeholder="مثال: محمدزاده" required>
+                        </div>
+          
+                        <button type="submit" class="btn btn-primary">جستجو</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        
 
 
 
