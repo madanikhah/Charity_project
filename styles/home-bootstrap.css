@@ -1,0 +1,32 @@
+
+  "background-color": (
+  property: background-color,
+  class: bg,
+  local-vars: (
+    "bg-opacity": 1
+  ),
+  values: map-merge(
+    $utilities-bg-colors,
+    (
+      "transparent": transparent,
+      "body-secondary": rgba(var(--#{$prefix}secondary-bg-rgb), var(--#{$prefix}bg-opacity)),
+      "body-tertiary": rgba(var(--#{$prefix}tertiary-bg-rgb), var(--#{$prefix}bg-opacity)),
+    )
+  )
+),
+"bg-opacity": (
+  css-var: true,
+  class: bg-opacity,
+  values: (
+    10: .1,
+    25: .25,
+    50: .5,
+    75: .75,
+    100: 1
+  )
+),
+"subtle-background-color": (
+  property: background-color,
+  class: bg,
+  values: $utilities-bg-subtle
+),

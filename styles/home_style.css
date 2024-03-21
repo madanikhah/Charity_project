@@ -1,0 +1,68 @@
+*{
+    direction: rtl;
+    font-family: yekan;
+    font-size: 16px;
+    color: #293f3e;
+}
+@font-face {
+    font-family: yekan;
+    src: url(../fonts/Iranian\ Sans.ttf);
+}
+
+.icon{
+    width: 30px;
+    margin-left: 40px;
+     margin-right: 20px; 
+    object-position: center;
+    display: inline-block;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.type_of_order{
+    display: inline; 
+     list-style-type: none;
+    border-collapse: collapse;
+    width: 100%;
+    height: 30px;
+    /* padding: 50px; */
+    text-decoration: none; 
+}
+.types{
+    /* position: relative; */
+    width: 100%;
+    list-style-type: none;
+    margin-left: 20px;
+    margin-right: 10px; 
+    /* margin-top: 20px;
+    /* padding: 10px; */
+    /* padding: 0; */
+    overflow: hidden;
+}
+li, .types{
+
+    float: right;
+    display: block;
+    padding: 10px;
+    background-color: rebeccapurple;
+    border-radius: 8px;
+}
+
+li:hover{
+    /* background-color: #96adac; */
+    background-color: #91b4b5;
+
+}
+
+.back {
+    position: relative;
+    margin-top: 40px;
+    /* margin-left: 14px;
+    margin-right: 14px; */
+    /* z-index: 30; */
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
