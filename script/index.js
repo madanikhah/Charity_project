@@ -31,6 +31,12 @@ $(document).ready(function() {
     handleVerificationFillFormSubmit();
   });
 
+  $('#test').click(function() {
+      $('form').hide();
+      $('#test-form').show();
+      handleTestFormSubmit();
+    });
+  
   $('#trust').click(function() {
     $('form').hide();
     $('#trust-form').show();
