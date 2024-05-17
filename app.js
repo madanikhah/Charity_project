@@ -7,27 +7,11 @@ const bodyParser = require('body-parser');
 const url = require('url');
 const json = require('json');
 
-const app = express();
-app.use(express.json()); // Middleware to parse JSON data in the request body
-
-// Route to handle the sign-in form submission
-app.post('/register', (req, res) => {
-  const { phoneNumber, password } = req.body;
-
-  // Query the users table to check the credentials
-
-  // Send a response to the client
-  res.json({ message: 'Sign-in successful', user: { phoneNumber, password } });
-
-});
-
-
 //get start to connect to localhost and loading pages
 const server = http.createServer(
   (req, res) => {
 
-req.url
-    if (req.url.includes('/sign_in')  && req.method === 'POST') {
+    if(req.url.includes('/sign_in')  && req.method === 'POST') {
       let body = '';
       req.on('data', (chunk) => {
         body += chunk.toString();
@@ -35,7 +19,6 @@ req.url
       console.log("body",body);
       req.on('end', () => {
         const { phoneNumber, password } = JSON.parse(body);
-        console.log("hi");
 
         // Query the database to check if the user exists
         connection.query('SELECT * FROM user WHERE phone_number = ?', [phoneNumber], (err, results) => {
@@ -61,17 +44,46 @@ req.url
             res.end(JSON.stringify({ error: 'Invalid phone number or password' }));
             return;
           }
-          console.log("bye");
-
           // User is authenticated, you can now generate a session token or perform other actions
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ message: 'Sign-in successful' }));
         });
       });
-    } else {    
+    }else if(req.url.includes('/submit_request')  && req.method === 'POST'){
+      let body = '';
+      req.on('data', (chunk) => {
+        body += chunk.toString();
+      });
+      console.log("body",body);
+      req.on('end', () => {
+        const { firstname, lastname, fathername,national_code, birth, phone, representative,date,level } = JSON.parse(body);
+        
+        connection.query(
+          'INSERT INTO applicant (firstname, lastname, fathername, birth, phone, national_code, public_code) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          [firstname, lastname, fathername, birth, phone, national_code, 100000], (err, results) => {
+            console.log('SQL Query:', 'INSERT INTO applicant (firstname, lastname, fathername, birth, phone, national_code, public_code) VALUES (?, ?, ?, ?, ?, ?, ?)', [firstname, lastname, fathername, birth, phone, national_code, 100000]);
+        
+            if (err) {
+              console.error('Error querying the database: ' + err.stack);
+              res.writeHead(500, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: 'Internal server error' }));
+              return;
+            }
+
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ message: 'insertaion successful' }));
+        });
+      });
+    }else if(req.url.includes('/search_verification')  && req.method === 'POST'){
+      search_national_code();
+    }else if(req.url.includes('/')  && req.method === 'POST'){
+
+    }else if(req.url.includes('/')  && req.method === 'POST'){
+
+    }else {    
     //
     let filepath = path.join(__dirname ,  req.url === '/' ? "pages\\index.html": req.url);
-    //console.log(__dirname);
+    console.log(filepath);
     let extname = path.extname(filepath);
     let contenttype = 'text/html';
     switch(extname){
@@ -135,48 +147,34 @@ if (err) {
 console.log('Connected to database as id ' + connection.threadId);
 });
 
-// Route for handling form submission
-// app.post('/submit-form', (req, res) => {
-//   const {
-//     firstname,
-//     lastname,
-//     fathername,
-//     nationalCode,
-//     birth,
-//     phone,
-//     representativeName,
-//     date,
-//     level
-//   } = req.body;
+function search_national_code(){
+  let body = '';
+      req.on('data', (chunk) => {
+        body += chunk.toString();
+      });
+      console.log("body",body);
+      req.on('end', () => {
+        const { national } = JSON.parse(body);
+        // Query the database to check if the user exists
+        connection.query('SELECT * FROM applicant WHERE national_code = ?', [national], (err, results) => {
+          console.log('SQL Query:', 'SELECT * FROM applicant WHERE national_code = ?', [national]);
 
-//   // Insert the form data into the MySQL database
-//   const query = `
-//     INSERT INTO applicant (
-//       firstname, lastname, fathername, national_code, birth, phone, supporter_id, interview_date, level
-//     ) VALUES (?, ?, ?, ?, ?, ?, (SELECT id FROM user WHERE username = ?), ?, ?)
-//   `;
-
-//   connection.query(
-//     query,
-//     [
-//       firstname,
-//       lastname,
-//       fathername,
-//       nationalCode,
-//       birth,
-//       phone,
-//       representativeName,
-//       date,
-//       level
-//     ],
-//     (err, result) => {
-//       if (err) {
-//         console.error('Error inserting data:', err);
-//         res.status(500).send('Error inserting data');
-//       } else {
-//         console.log('Data inserted successfully');
-//         res.status(200).send('Data inserted successfully');
-//       }
-//     }
-//   );
-// });
+          if (err) {
+            console.error('Error querying the database: ' + err.stack);
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Internal server error' }));
+            return;
+          }
+  
+          if (results.length === 0) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'national code not exist' }));
+            return;
+          }
+          // User is authenticated, you can now generate a session token or perform other actions
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          
+          res.end(JSON.stringify({ message: 'Search successful' }));
+        });
+      });
+}
