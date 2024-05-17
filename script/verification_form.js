@@ -1,60 +1,8 @@
-  
-  
-    // function validateFormData(data) {
-    //   let isValid = true;
-    
-    //   // Validate the national code
-    //   if (!isNumericOnly(data.national_code)) {
-    //     alert('National code should only contain numbers.');
-    //     isValid = false;
-    //   }
-    
-    //   return isValid;
-    // }
-    // function handleVerificationFormSubmit() {
-    //     const form = document.getElementById('verification-form');
-      
-    //     form.addEventListener('submit', async (event) => {
-    //       event.preventDefault();
-    //       // Validate the form data
-    //       if (!validateFormData(data)) {
-    //         return; // Return if the data is invalid
-    //       }
-    //       const national_code = document.getElementById('nationalcode-verification-id').value;
-      
-    //          try {
-    //         const response = await fetch('/submit_verification_form', {
-    //           method: 'POST',
-    //           headers: {
-    //             'Content-Type': 'application/json'
-    //           },
-    //           body: JSON.stringify({ national_code })
-    //         });
-        
-    //         if (response.ok) {
-    //           const data = await response.json();
-              
-    //           window.alert("متقاضی با موفقیت شناسایی شد!");
-    //           window.location.href = '/';
-    //         } else {
-    //         //   const { error } = await response.json();
-    //           window.alert("متقاضی تعریف نشده است!");
-    //           // Display an error message to the user
-    //         }
-    //       } catch (error) {
-    //         console.error('Error:', error);
-    //         // Display a general error message to the user
-    //       }
-    //     });
-    //     }
-    
-
-    async function handleVerificationCodeSubmit() {
+    async function handleVerificationFormSubmit() {
         const verificationForm = document.getElementById('verification-form');
         // const form = document.getElementById('verification-form');
-
         verificationForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
+          event.preventDefault();
                   // Validate the form data
             const nationalCodeInput = document.getElementById('nationalcode-verification-id');
 
