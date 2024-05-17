@@ -11,7 +11,8 @@ async function handleTestFormSubmit() {
       alert('National code must be 10 digits long and contain only numbers.');
       return;
     }
-  
+    let national = nationalCodeInput.value.toString().slice(1);
+
     try {
       // Check the national code with the backend
       const response = await fetch('/search_test', {
@@ -19,7 +20,7 @@ async function handleTestFormSubmit() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nationalCodeInput })
+        body: JSON.stringify({ national })
       });
   
       if (response.ok) {
