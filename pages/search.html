@@ -7,19 +7,18 @@
     <title>ویرایش اطلاعات کاربری</title>
 
     <!-- Bootstrap CSS -->
-
-    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" 
+    integrity="sha384-PJsj/BTMqILvmcej7ulplguok8ag4xFTPryRq8xevL7eBYSmpXKcbNVuy+P0RMgq" crossorigin="anonymous">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/edit_profile.css">
 </head>
 <body>
     <div class="container">
-        <h1>ورود </h1>
-        <form id="sign-in-form" action="/sign_in" method="POST">
+        <h1>جستجوی پیشرف </h1>
+        <form id="edit-profile-form">
             
             <div class="mb-3">
-                <div class="mb-3">
                 <label for="phone-number" class="form-label">شماره همراه</label>
                 <input type="text" class="form-control" id="phone-number" name="phone-number" required>
             </div>
@@ -34,10 +33,15 @@
         </form>
     </div>
 
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-4zQjvJZUzFmG7+9rRZaLHm9vP4tW5a1z0fZQdA3fJsKZlWbY4sNvQkK+J2PjVz6Y"
+    crossorigin="anonymous"></script>
+
     <!-- jQuery -->
-    <script src="../script/jquery-3.6.0.min.js"></script>
+    <script src="../scripts/jquery-3.6.0.min.js"></script>
 
     <!-- Custom JS -->
-    <script src="../script/edit_profile.js"></script>
+    <script src="../scripts/edit-profile.js"></script>
 </body>
 </html>
