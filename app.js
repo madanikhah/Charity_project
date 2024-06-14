@@ -10,7 +10,8 @@ const json = require('json');
 //get start to connect to localhost and loading pages
 const server = http.createServer(
   (req, res) => {
-
+    
+    // js = edit_profile, form = sign_in.html
     if(req.url.includes('/sign_in')  && req.method === 'POST') {
       let body = '';
       req.on('data', (chunk) => {
@@ -49,6 +50,8 @@ const server = http.createServer(
           res.end(JSON.stringify({ message: 'Sign-in successful' }));
         });
       });
+
+//js = req_form , form = ثبت نام اولیه
     }else if(req.url.includes('/submit_request')  && req.method === 'POST'){
       let body = '';
       req.on('data', (chunk) => {
@@ -74,11 +77,21 @@ const server = http.createServer(
           res.end(JSON.stringify({ message: 'insertaion successful' }));
         });
       });
-    }else if(req.url.includes('/search_verification')  && req.method === 'POST'){
-      search_national_code();
-    }else if(req.url.includes('/')  && req.method === 'POST'){
 
-    }else if(req.url.includes('/')  && req.method === 'POST'){
+ //js = verification_form , form = فرم شناسایی
+  }else if(req.url.includes('/search_verification')  && req.method === 'POST'){
+      //search_national_code(national_verification,req,res);
+      search_national_verification(req,res);
+      
+      //js = test_form, form = فرم برگه سنجش
+    }else if(req.url.includes('/search_test')  && req.method === 'POST'){
+      //search_national_code(national_test,req,res);
+      search_national_code(req,res);
+
+      //js = interview_form , form = فرم درخواست مصاحبه     js and html not completed
+    }else if(req.url.includes('/search_interview')  && req.method === 'POST'){
+      //search_national_code(national_interview,req,res);
+      search_national_code(req,res);
 
     }else {    
     //
@@ -145,19 +158,20 @@ if (err) {
   return;
 }
 console.log('Connected to database as id ' + connection.threadId);
-});
+}); 
 
-function search_national_code(){
+
+function search_national_verification(req,res){
   let body = '';
       req.on('data', (chunk) => {
         body += chunk.toString();
       });
       console.log("body",body);
+
       req.on('end', () => {
         const { national } = JSON.parse(body);
         // Query the database to check if the user exists
-        connection.query('SELECT * FROM applicant WHERE national_code = ?', [national], (err, results) => {
-          console.log('SQL Query:', 'SELECT * FROM applicant WHERE national_code = ?', [national]);
+        connection.query('SELECT call1_date, call1_result, call2_date, call2_result, call3_date, call3_result FROM verification WHERE national_code = ?', [national], (err, results) => {
 
           if (err) {
             console.error('Error querying the database: ' + err.stack);
@@ -174,7 +188,10 @@ function search_national_code(){
           // User is authenticated, you can now generate a session token or perform other actions
           res.writeHead(200, { 'Content-Type': 'application/json' });
           
-          res.end(JSON.stringify({ message: 'Search successful' }));
+          //res.end(JSON.stringify({ message: 'Search successful' }));
+          console.log(results);
+          res.end(JSON.stringify({ message: 'Search successful', data: results }));
+
         });
       });
 }
