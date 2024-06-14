@@ -1,47 +1,41 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ویرایش اطلاعات کاربری</title>
+  <title>Search Page</title>
+  <link rel="stylesheet" href="../styles/bootstrap.min.css">
+  <link rel="stylesheet" href="../icons/bootstrap-icons.css">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" 
-    integrity="sha384-PJsj/BTMqILvmcej7ulplguok8ag4xFTPryRq8xevL7eBYSmpXKcbNVuy+P0RMgq" crossorigin="anonymous">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../styles/edit_profile.css">
-</head>
+  <!-- <link rel="shortcut icon" class="" href="../icons/amd.svg" type="image/x-icon"> -->
+  <!-- bootstrap icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" >
+  <link rel="shortcut icon" style="fill:blue;" href="../icons/amd.svg" type="image/svg+xml">
+<!-- --- -->
+  <link rel="stylesheet" href="../styles/flex_style.css">
+  <link rel="stylesheet" href="../styles/index_style.css"></head>
 <body>
-    <div class="container">
-        <h1>جستجوی پیشرف </h1>
-        <form id="edit-profile-form">
-            
-            <div class="mb-3">
-                <label for="phone-number" class="form-label">شماره همراه</label>
-                <input type="text" class="form-control" id="phone-number" name="phone-number" required>
-            </div>
-            
-            <div class="mb-3">
-                <label for="password" class="form-label">رمز عبور</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            
-            <button type="submit" class="btn btn-primary"> ثبت</button>
-            <button type="button" class="btn btn-secondary">انصراف</button>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-4">
+        <h1 class="text-center mt-5">جستجو پیشرفته</h1>
+        <form action="/search-results" method="POST" class="mt-4">
+          <div class="form-group">
+            <label for="search-type">جستجو براساس</label>
+            <select class="form-control" id="search-type" name="search-type">
+              <option value=""> یک گزینه را انتخاب کنید </option>
+              <option value="public-code">کد عمومی </option>
+              <option value="last-name">نام خانوادگی</option>
+              <option value="mobile-phone">تلفن همراه</option>
+            </select>
+          </div>
+          <div class="form-group" id="search-input-container">
+          </div>
+          <button type="submit" class="btn btn-primary d-block mx-auto mt-3">جستجو</button>
         </form>
+      </div>
     </div>
+  </div>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-4zQjvJZUzFmG7+9rRZaLHm9vP4tW5a1z0fZQdA3fJsKZlWbY4sNvQkK+J2PjVz6Y"
-    crossorigin="anonymous"></script>
-
-    <!-- jQuery -->
-    <script src="../scripts/jquery-3.6.0.min.js"></script>
-
-    <!-- Custom JS -->
-    <script src="../scripts/edit-profile.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="../script/search.js"></script>
 </body>
 </html>
