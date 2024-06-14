@@ -1,47 +1,38 @@
-const searchTypeSelect = document.getElementById('search-type');
-const searchInputContainer = document.getElementById('search-input-container');
-
-searchTypeSelect.addEventListener('change', function() {
-  searchInputContainer.innerHTML = '';
-  switch (this.value) {
-    case 'public-code':
-      searchInputContainer.innerHTML = '<label for="public-code">کد عمومی</label><input type="text" class="form-control" id="public-code" name="public-code">';
-      break;
-    case 'last-name':
-      searchInputContainer.innerHTML = '<label for="last-name">نام خانوادگی</label><input type="text" class="form-control" id="last-name" name="last-name">';
-      break;
-    // case 'year-of-birth':
-    //   searchInputContainer.innerHTML = '<label for="year-of-birth">Year of Birth:</label><input type="number" class="form-control" id="year-of-birth" name="year-of-birth">';
-    //   break;
-    case 'mobile-phone':
-      searchInputContainer.innerHTML = '<label for="mobile-phone">تلفن همراه</label><input type="tel" class="form-control" id="mobile-phone" name="mobile-phone">';
-      break;
-      
-  }
-});
-
-
 $(document).ready(function() {
-  $('#searchForm').submit(function(event) {
-    event.preventDefault();
+  $('#search-type').change(function() {
+    $('#search-input-container').html('');
+    switch ($(this).val()) {
+      case 'public-code':
+        $('#search-input-container').html('<label for="public-code">کد عمومی</label><input type="text" class="form-control" id="public-code" name="public-code">');
+        break;
+      case 'last-name':
+        $('#search-input-container').html('<label for="last-name">نام خانوادگی</label><input type="text" class="form-control" id="last-name" name="last-name">');
+        break;
+      case 'mobile-phone':
+        $('#search-input-container').html('<label for="mobile-phone">تلفن همراه</label><input type="tel" class="form-control" id="mobile-phone" name="mobile-phone">');
+        break;
+    }
+  });
 
-    const searchData = {
-      searchType: $('#search-type').val(),
-      searchTerm: $('#search-term').val()
-    };
+  $('#submit-search').click(async function() {
+    try {
+      const response = await $.ajax({
+        url: '/search_advanced',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ searchType: $('#search-type').val(), searchInput: $('#search-input-container').find('input').val() })
+      });
 
-    $.ajax({
-      type: 'POST',
-      url: '/search',
-      data: JSON.stringify(searchData),
-      contentType: 'application/json',
-      success: function(response) {
+      if (response) {
         displaySearchResults(response);
-      },
-      error: function(err) {
-        console.error('Error:', err);
+        window.alert('کد پیداشده');
+      } else {
+        alert('No data found for the provided search criteria.');
       }
-    });
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while processing the search.');
+    }
   });
 
   function displaySearchResults(results) {
