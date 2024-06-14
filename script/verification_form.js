@@ -11,7 +11,8 @@
           alert('National code must be 10 digits long and contain only numbers.');
           return;
         }
-      
+       // let national_verification =  nationalCodeInput.value.toString().slice(1);
+       let national =  nationalCodeInput.value.toString().slice(1);
         try {
           // Check the national code with the backend
           const response = await fetch('/search_verification', {
@@ -19,57 +20,24 @@
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nationalCodeInput })
+            body: JSON.stringify({national})
           });
       
           if (response.ok) {
             const data = await response.json();
-            window.alert('کد پیداشده');
-            // If there is a code in the forms, open another form
-            // if (data.hasCode) {
-            //   verificationForm.style.display = 'none';
-            //   const codeForm = document.getElementById('code-form');
-            //   codeForm.style.display = 'block';
-      
-            //   const dateInput = document.getElementById('date');
-            //   const resultInput = document.getElementById('result');
-      
-            //   dateInput.value = data.date;
-            //   resultInput.value = data.resultCallId;
-      
-            //   codeForm.addEventListener('submit', async (event) => {
-            //     event.preventDefault();
-      
-            //     try {
-            //       const codeResponse = await fetch('/submit_code_form', {
-            //         method: 'POST',
-            //         headers: {
-            //           'Content-Type': 'application/json'
-            //         },
-            //         body: JSON.stringify({ date: dateInput.value, result: resultInput.value })
-            //       });
-      
-            //       if (codeResponse.ok) {
-            //         const codeData = await codeResponse.json();
-            //         alert('Form submitted successfully!');
-            //         // Redirect or perform other actions
-            //       } else {
-            //         alert('Error submitting the form.');
-            //       }
-            //     } catch (error) {
-            //       console.error('Error:', error);
-            //       alert('An error occurred while submitting the form.');
-            //     }
-            //   });
-            // } else {
-            //   alert('No code found for the provided national code.');
-            // }
+              $('form').hide();
+              $('#verification-fill-form').show();
+             // handleVerificationFillFormSubmit(result);
+           
           } else {
-            alert('Error checking the national code with the backend.');
+            alert('متقاضی یافت نشد');
           }
         } catch (error) {
           console.error('Error:', error);
-          alert('An error occurred while checking the national code.');
+          alert('مشکل ارتباط با پایگاه داده');
         }
       }
     );}
+
+
+    function handleVerificationFillFormSubmit(result){}
