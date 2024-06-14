@@ -52,10 +52,11 @@
                   </li>
 
                 </ul>
-                <!-- <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="جستجو" aria-label="Search">
+                <!-- ++++++++++?\ -->
+                <form class="d-flex" role="search">
+                  <!-- <input class="form-control me-2" type="search" placeholder="جستجو" aria-label="Search"> -->
                   <button class="btn btn-outline-success" type="submit">جستجو</button>
-                </form> -->
+                </form>
               </div>
             </div>
           </nav>
@@ -121,16 +122,16 @@
                 <div class="mb-3">
 
                   <label for="firstname-req-id" class="form-label" >نام</label>
-                  <input type="text" class="form-control" id="firstname-req-id" placeholder="مثال: علی" required>
+                  <input type="text" class="form-control" id="firstname-req-id" name="firstname-req-id" placeholder="مثال: علی" required>
                 </div>
   
                 <div class="mb-3">
-                  <label for="astname-req-id" class="form-label">نام خانوادگی</label>
-                  <input type="text" class="form-control" id="lastname-req-id" placeholder="مثال: تهرانی" required>
+                  <label for="lastname-req-id" class="form-label">نام خانوادگی</label>
+                  <input type="text" class="form-control" id="lastname-req-id" name="lastname-req-id" placeholder="مثال: تهرانی" required>
                 </div>
                 <div class="mb-3">
                   <label for="fathername-req-id" class="form-label">نام پدر</label>
-                  <input type="text" class="form-control" id="fathername-req-id" placeholder="مثال: محمد" required>
+                  <input type="text" class="form-control" id="fathername-req-id" name="fathername-req-id" placeholder="مثال: محمد" required>
                 </div>
 
                 <div class="mb-3">
@@ -252,8 +253,8 @@
         <form id="verify-form">
           <div class="mb-3">
             
-              <label for="phone-number" class="form-label">کد ملی</label>
-              <input type="text" class="form-control" id="nationalcode-verification-id" name="phone-number" required>
+              <label for="nationalcode-verification-id" class="form-label">کد ملی</label>
+              <input type="text" class="form-control" id="nationalcode-verification-id" name="nationalcode-verification-id" required>
             </div>
 
           
@@ -318,7 +319,7 @@
               
                 <div class="mb-3">
                   <label for="phone-number" class="form-label">کد ملی</label>
-                  <input type="text" class="form-control" id="nationalcode-req-id" name="phone-number" required>
+                  <input type="text" class="form-control" id="nationalcode-test-id" name="phone-number" required>
                 </div>
   
   
@@ -645,7 +646,7 @@
                   <input type="number" min="1000" max="1000000000" class="form-control" id="money" placeholder="مثال: 100000 ریال" required>
                 </div>
   
-                <button type="submit" class="btn btn-primary">جستجو</button>
+                <button type="submit" class="btn btn-primary" id="enfagh-search">جستجو</button>
               </form>
             </div>
           </div>
@@ -717,18 +718,8 @@
                   </div>
                 </div>
               </form>
-        
-
-
-
-  
-
-  
-      <!-- جدول نمایش پروازها -->
-      <div id="flight-table-container"></div>
-    
+      
     </div>
-    
                 <!-- اسکریپت‌های مورد نیاز -->
                 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -742,6 +733,7 @@
     <script src="../script/test_form.js"></script>
     <script src="../script/interview_form.js"></script>
     <script src="../script/bootstrap.bundle.min.js"></script>
+
 
     </body>
 </html>
