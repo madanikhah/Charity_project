@@ -52,11 +52,10 @@
                   </li>
 
                 </ul>
-                <!-- ++++++++++?\ -->
-                <form class="d-flex" role="search">
-                  <!-- <input class="form-control me-2" type="search" placeholder="جستجو" aria-label="Search"> -->
+                <!-- <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="جستجو" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">جستجو</button>
-                </form>
+                </form> -->
               </div>
             </div>
           </nav>
@@ -76,35 +75,35 @@
       <div class="row justify-content-center mb-3">
         <div class="col-md-6">
           <div class="btn-group type-of-orders" role="group" aria-label="Basic radio toggle button group" style="border-color: red;">
-            <input type="radio" class="btn-check" name="flight-type" id="req" autocomplete="off">
+            <input type="radio" class="btn-check"  id="req" autocomplete="off">
             <label class="btn btn-outline-primary" for="req">
               <i class="bi bi-clipboard-data" style="color: orange; font-size: larger;"></i> ثبت نام اولیه</label>
   
-            <input type="radio" class="btn-check" name="flight-type" id="verification" autocomplete="off">
+            <input type="radio" class="btn-check"  id="verification" autocomplete="off">
             <label class="btn btn-outline-primary" for="verification">
               <i class="bi bi-clipboard-data" style="color: orange; font-size: larger;"></i> شناسایی</label>
   
-            <input type="radio" class="btn-check" name="flight-type" id="test" autocomplete="off">
+            <input type="radio" class="btn-check"  id="test" autocomplete="off">
             <label class="btn btn-outline-primary" for="test">
               <i class="bi bi-moisture" style="color: orange; font-size: larger;"></i>برگه سنجش</label>
 
-              <input type="radio" class="btn-check" name="flight-type" id="interview" autocomplete="off">
+              <input type="radio" class="btn-check" id="interview" autocomplete="off">
             <label class="btn btn-outline-primary" for="interview">
               <i class="bi bi-mic" style="color: orange; font-size: larger;"></i>مصاحبه </label>
   
-            <input type="radio" class="btn-check" name="flight-type" id="mali" autocomplete="off">
+            <input type="radio" class="btn-check" id="mali" autocomplete="off">
             <label class="btn btn-outline-primary" for="mali">
               <i class="bi bi-database-add" style="color: orange; font-size: larger;"></i>حمایت و توانمند سازی</label>
             
-            <input type="radio" class="btn-check" name="flight-type" id="enfagh" autocomplete="off">
+            <input type="radio" class="btn-check"  id="enfagh" autocomplete="off">
             <label class="btn btn-outline-primary" for="enfagh">
               <i class="bi bi-heart-half" style="color: orange; font-size: larger;"></i>انفاق</label>
   
-            <input type="radio" class="btn-check" name="flight-type" id="hotel" autocomplete="off">
+            <input type="radio" class="btn-check"  id="hotel" autocomplete="off">
             <label class="btn btn-outline-primary" for="hotel">
               <i class= "bi bi-magic" style="color: orange; font-size: larger;"></i>فرهنگی</label>
 
-            <input type="radio" class="btn-check" name="flight-type" id="search" autocomplete="off">
+            <input type="radio" class="btn-check"  id="search" autocomplete="off">
             <label class="btn btn-outline-primary" for="search">
               <i class= "bi bi-magic test" style="color: orange; font-size: larger;"></i>استعلام وضعیت</label>
             
@@ -112,7 +111,7 @@
         </div>
       </div>
 
-      <!-- فرم جستجوی درخواست جدید -->
+      <!-- فرم ثبت نام اولیه-->
       <form id="req-form" class="row justify-content-center mb-3" style="display: none;">
         <div class="col-md-6">
           <div class="card">
@@ -131,7 +130,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="fathername-req-id" class="form-label">نام پدر</label>
-                  <input type="text" class="form-control" id="fathername-req-id" name="fathername-req-id" placeholder="مثال: محمد" required>
+                  <input type="text" class="form-control" id="fathername-req-id" name = "fathername-req-id" placeholder="مثال: محمد" required>
                 </div>
 
                 <div class="mb-3">
@@ -253,12 +252,12 @@
         <form id="verify-form">
           <div class="mb-3">
             
-              <label for="nationalcode-verification-id" class="form-label">کد ملی</label>
-              <input type="text" class="form-control" id="nationalcode-verification-id" name="nationalcode-verification-id" required>
+              <label for="phone-number" class="form-label">کد ملی</label>
+              <input type="text" class="form-control" id="nationalcode-verification-id" name="phone-number" required>
             </div>
 
           
-          <button type="submit" class="btn btn-primary" id="search-verification-id">جستجو</button>
+          <button type="submit" class="btn btn-primary" >جستجو</button>
         </form>
       </div>
     </div>
@@ -646,7 +645,7 @@
                   <input type="number" min="1000" max="1000000000" class="form-control" id="money" placeholder="مثال: 100000 ریال" required>
                 </div>
   
-                <button type="submit" class="btn btn-primary" id="enfagh-search">جستجو</button>
+                <button type="submit" class="btn btn-primary">جستجو</button>
               </form>
             </div>
           </div>
@@ -717,11 +716,9 @@
                     </div>
                   </div>
                 </div>
-              </form>
-      
+              </form>  
     </div>
-                <!-- اسکریپت‌های مورد نیاز -->
-                
+                <!-- اسکریپت‌های مورد نیاز -->      
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../script/bootstrap.min.js"></script>
     <script src="../script/popper.min.js"></script>
@@ -729,11 +726,10 @@
     <script src="../script/sign_up_person.js"></script>
     <script src="../script/index.js"></script>
     <script src="../script/req_form.js"></script>
-    <script src="../script/verification_form.js"></script>
-    <script src="../script/test_form.js"></script>
     <script src="../script/interview_form.js"></script>
+    <script src="../script/test_form.js"></script>
+    <script src="../script/verification_form.js"></script>
     <script src="../script/bootstrap.bundle.min.js"></script>
-
 
     </body>
 </html>
