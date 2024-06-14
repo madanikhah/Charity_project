@@ -30,7 +30,9 @@
              // handleVerificationFillFormSubmit(result);
            
           } else {
-            alert('متقاضی یافت نشد');
+            //alert('متقاضی یافت نشد');
+            $('form').hide();
+            $('#verification-fill-form').show();
           }
         } catch (error) {
           console.error('Error:', error);
