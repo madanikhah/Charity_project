@@ -6,13 +6,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const url = require('url');
 const json = require('json');
+express.json();
 
 //get start to connect to localhost and loading pages
 const server = http.createServer(
   (req, res) => {
+    console.log('req.url: ',req.url);
     
-    // js = edit_profile, form = sign_in.html
-    if(req.url.includes('/sign_in')  && req.method === 'POST') {
+    if(req.url == '/home'){
+      req.url = 'pages\\home.html';
+
+    }
+    // js = sign_in, form = sign_in.html
+    if(req.url == '/sign_in'  && req.method === 'POST') {
+      username = "";
       let body = '';
       req.on('data', (chunk) => {
         body += chunk.toString();
@@ -38,21 +45,24 @@ const server = http.createServer(
           }
   
           const user = results[0];
-          console.log("user",results);
 
           if (user.password !== password) {
             res.writeHead(401, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Invalid phone number or password' }));
             return;
           }
+          global.sharedData = user.username ;
+          console.log("\nglobal: "+ global.sharedData);
+          exports.sharedData = user.username;
+          
           // User is authenticated, you can now generate a session token or perform other actions
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ message: 'Sign-in successful' }));
+          res.end(JSON.stringify({ message: "ok" }));
         });
       });
 
 //js = req_form , form = ثبت نام اولیه
-    }else if(req.url.includes('/submit_request')  && req.method === 'POST'){
+    }else if(req.url == '/submit_request'  && req.method === 'POST'){
       let body = '';
       req.on('data', (chunk) => {
         body += chunk.toString();
@@ -79,24 +89,63 @@ const server = http.createServer(
       });
 
  //js = verification_form , form = فرم شناسایی
-  }else if(req.url.includes('/search_verification')  && req.method === 'POST'){
+    }else if(req.url == '/search_verification' && req.method === 'POST'){
       //search_national_code(national_verification,req,res);
       search_national_verification(req,res);
       
       //js = test_form, form = فرم برگه سنجش
-    }else if(req.url.includes('/search_test')  && req.method === 'POST'){
+    }else if(req.url == '/search_test' && req.method === 'POST'){
       //search_national_code(national_test,req,res);
-      search_national_code(req,res);
+      search_national_test(req,res);
 
       //js = interview_form , form = فرم درخواست مصاحبه     js and html not completed
-    }else if(req.url.includes('/search_interview')  && req.method === 'POST'){
+    }else if(req.url == '/search_interview' && req.method === 'POST'){
       //search_national_code(national_interview,req,res);
       search_national_code(req,res);
+//js = search.js, form = search.html
+    }else if(req.url == '/search_advanced'){
+      let body = '';
+      req.on('data', (chunk) => {
+        body += chunk.toString();
+      });
 
-    }else {    
+      console.log(searchTypeSelect, searchInputContainer);
+      req.on('end', () => {
+        const { national_test } = JSON.parse(body);
+        // Query the database to check if the user exists
+      switch (searchTypeSelect) {
+        case 'last-name':
+          connection.query('SELECT * FROM applicant WHERE last_name = ?', [searchInputContainer], (err, results) => {
+            if (err) {
+              console.error('Error querying the database: ' + err.stack);
+              res.writeHead(500, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: 'Internal server error' }));
+              return;
+            }
+    
+            if (results.length === 0) {
+              res.writeHead(401, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: 'national code not exist' }));
+              return;
+            }
+            // User is authenticated, you can now generate a session token or perform other actions
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            
+            //res.end(JSON.stringify({ message: 'Search successful' }));
+            //console.log(results);
+            res.end(JSON.stringify({ message: 'Search successful', data: results }));
+          });
+          break;
+      }
+      });
+
+
+    }
+    else {    
     //
     let filepath = path.join(__dirname ,  req.url === '/' ? "pages\\index.html": req.url);
-    console.log(filepath);
+    console.log("req.url:  ",req.url);
+    console.log("filepath:    ",filepath);
     let extname = path.extname(filepath);
     let contenttype = 'text/html';
     switch(extname){
@@ -195,3 +244,40 @@ function search_national_verification(req,res){
         });
       });
 }
+
+function search_national_test(req,res){
+  let body = '';
+      req.on('data', (chunk) => {
+        body += chunk.toString();
+      });
+      console.log("body",body);
+
+      req.on('end', () => {
+        const { national_test } = JSON.parse(body);
+        // Query the database to check if the user exists
+        connection.query('SELECT sickness, addiction, evaluation, description, supporter_id, nationality, married_child, under_coverd FROM applicant WHERE national_code = ?', [national_test], (err, results) => {
+
+          if (err) {
+            console.error('Error querying the database: ' + err.stack);
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Internal server error' }));
+            return;
+          }
+  
+          if (results.length === 0) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'national code not exist' }));
+            return;
+          }
+          // User is authenticated, you can now generate a session token or perform other actions
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          
+          //res.end(JSON.stringify({ message: 'Search successful' }));
+          //console.log(results);
+          res.end(JSON.stringify({ message: 'Search successful', data: results[0] }));
+
+        });
+      });
+}
+
+
