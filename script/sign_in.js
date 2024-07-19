@@ -17,10 +17,10 @@ form.addEventListener('submit', async (event) => {
 
     if (response.ok) {
       const data = await response.json();
-      //console.log(data.message);
+     // const message = data.message;
       // Redirect the user or perform other 
       window.alert("خوش آمدید");
-      window.location.href = '/';
+      window.location.href = '/home';
     } else {
     //   const { error } = await response.json();
       window.alert("کاربر وجود ندارد");
