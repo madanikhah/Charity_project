@@ -190,7 +190,7 @@ const server = http.createServer(
      //console.log("hiii",filepath);
   }}
   ).listen(3000, () => {  console.log("Server running");});
-
+1
 // Create a connection to the database
 const connection = mysql.createConnection({
 host: 'localhost',
