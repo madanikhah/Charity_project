@@ -15,7 +15,12 @@ const server = http.createServer(
     
     if(req.url == '/home'){
       req.url = 'pages\\home.html';
-
+      // const dataToSend = {
+      //   username: 'JohnDoe',
+      // };
+      
+      // res.writeHead(200, { 'Content-Type': 'application/json' });
+      // res.end(JSON.stringify(dataToSend)); // Send the variable as a JSON response
     }
     // js = sign_in, form = sign_in.html
     if(req.url == '/sign_in'  && req.method === 'POST') {
@@ -24,7 +29,7 @@ const server = http.createServer(
       req.on('data', (chunk) => {
         body += chunk.toString();
       });
-      console.log("body",body);
+      //console.log("body",body);
       req.on('end', () => {
         const { phoneNumber, password } = JSON.parse(body);
 
@@ -51,13 +56,10 @@ const server = http.createServer(
             res.end(JSON.stringify({ error: 'Invalid phone number or password' }));
             return;
           }
-          global.sharedData = user.username ;
-          console.log("\nglobal: "+ global.sharedData);
-          exports.sharedData = user.username;
           
           // User is authenticated, you can now generate a session token or perform other actions
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ message: "ok" }));
+          res.end(JSON.stringify({ message: user.username }));
         });
       });
 
@@ -103,19 +105,20 @@ const server = http.createServer(
       //search_national_code(national_interview,req,res);
       search_national_code(req,res);
 //js = search.js, form = search.html
-    }else if(req.url == '/search_advanced'){
+    }else if(req.url == '/search_advanced' && req.method === 'POST'){
       let body = '';
       req.on('data', (chunk) => {
         body += chunk.toString();
       });
-
-      console.log(searchTypeSelect, searchInputContainer);
+      
       req.on('end', () => {
-        const { national_test } = JSON.parse(body);
+        const { searchType, searchInput } = JSON.parse(body);
+        console.log(searchType+",,,,"+searchInput);
         // Query the database to check if the user exists
-      switch (searchTypeSelect) {
-        case 'last-name':
-          connection.query('SELECT * FROM applicant WHERE last_name = ?', [searchInputContainer], (err, results) => {
+      switch (searchType.trim()) {
+        case 'public-code':
+          console.log('11111111111');
+          connection.query('SELECT * FROM applicant WHERE public_code = ?', [searchInput], (err, results) => {
             if (err) {
               console.error('Error querying the database: ' + err.stack);
               res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -128,9 +131,9 @@ const server = http.createServer(
               res.end(JSON.stringify({ error: 'national code not exist' }));
               return;
             }
+            console.log('res:'+results[0].firstname);
             // User is authenticated, you can now generate a session token or perform other actions
             res.writeHead(200, { 'Content-Type': 'application/json' });
-            
             //res.end(JSON.stringify({ message: 'Search successful' }));
             //console.log(results);
             res.end(JSON.stringify({ message: 'Search successful', data: results }));
