@@ -1,29 +1,23 @@
-const form = document.getElementById('sign-in-form');
+$(document).ready(function() {
+  $('#sign-in-form').submit(async function(event) {
+      event.preventDefault(); // Prevent the default form submission
 
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
+      const phoneNumber = $('#phone-number').val();
+      const password = $('#password').val();
 
-  const phoneNumber = document.getElementById('phone-number').value;
-  const password = document.getElementById('password').value;
+      try {
+          const response = await $.ajax({
+              url: '/sign_in',
+              method: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify({ phoneNumber, password })
+          });
 
-  try {
-    const response = await fetch('/sign_in', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ phoneNumber, password })
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      window.location.href = '/home';
-    } else {
-      window.alert("کاربر وجود ندارد");
-      // Display an error message to the user
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    // Display a general error message to the user
-  }
+          // If the response is successful, redirect to home
+          window.location.href = '/home';
+      } catch (error) {
+          console.error('Error:', error);
+          window.alert("کاربر وجود ندارد"); // Display an error message to the user
+      }
+  });
 });
