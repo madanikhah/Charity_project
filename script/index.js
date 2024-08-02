@@ -112,3 +112,19 @@ $(document).ready(function() {
 
    
 });
+
+$(document).ready(function() {
+    // Simulate a user role (0 = limited access, 1 = full access)
+    const userRoleId = 0; // Change this to test different roles
+
+    if (userRoleId === 0) {
+        // Disable other sections for role ID 0
+        $('#verification').prop('disabled', true).closest('label').addClass('disabled');
+        $('#test').prop('disabled', true).closest('label').addClass('disabled');
+        $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+
+        // Change the color of disabled labels
+        $('.disabled').css('color', 'gray');
+    }
+});
+
