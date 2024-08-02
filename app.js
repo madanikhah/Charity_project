@@ -112,8 +112,8 @@ const server = http.createServer(
         
               // Assuming you want to perform a second query based on the first query's result
               educationId = results[0].education_id; // Example: using the applicant's ID for the second query
-        
-              connection.query('SELECT level_name FROM education WHERE id = ?', [educationId], (err2, secondResults) => {
+              console.log("............."+educationId+"...............")
+              connection.query('SELECT * FROM education WHERE id = ?', [educationId], (err2, secondResults) => {
                 if (err2) {
                   console.error('Error querying the second database: ' + err2.stack);
                   res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -121,7 +121,7 @@ const server = http.createServer(
                 } else {
                   console.log('Second Query Result:', secondResults[0]);
                   res.writeHead(200, { 'Content-Type': 'application/json' });
-                  res.end(JSON.stringify({ message: results[0], education: secondResults[0] }));
+                  res.end(JSON.stringify({ message: results[0], education: secondResults[0].level_name }));
                 }
               });
             }
