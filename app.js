@@ -11,20 +11,14 @@ express.json();
 //get start to connect to localhost and loading pages
 const server = http.createServer(
   (req, res) => {
-    console.log('req.url: ',req.url);
-    
+    //console.log('req.url: ',req.url);
     if(req.url == '/home'){
       req.url = 'pages\\home.html';
-      // const dataToSend = {
-      //   username: 'JohnDoe',
-      // };
-      
-      // res.writeHead(200, { 'Content-Type': 'application/json' });
-      // res.end(JSON.stringify(dataToSend)); // Send the variable as a JSON response
     }
     // js = sign_in, form = sign_in.html
     if(req.url == '/sign_in'  && req.method === 'POST') {
-      username = "";
+      const username = "shima";
+      const level = "4";
       let body = '';
       req.on('data', (chunk) => {
         body += chunk.toString();
@@ -32,7 +26,7 @@ const server = http.createServer(
       //console.log("body",body);
       req.on('end', () => {
         const { phoneNumber, password } = JSON.parse(body);
-
+        // const { phoneNumber, password } = req.body;
         // Query the database to check if the user exists
         connection.query('SELECT * FROM user WHERE phone_number = ?', [phoneNumber], (err, results) => {
 
@@ -40,26 +34,17 @@ const server = http.createServer(
             console.error('Error querying the database: ' + err.stack);
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Internal server error' }));
-            return;
-          }
-  
-          if (results.length === 0) {
+          }else if (results.length === 0) {
             res.writeHead(401, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Invalid phone number or password' }));
-            return;
-          }
-  
-          const user = results[0];
-
-          if (user.password !== password) {
+          }else if (results[0].password !== password) {
             res.writeHead(401, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Invalid phone number or password' }));
-            return;
+          }else{
+          // User is authenticated
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: results[0] }));
           }
-          
-          // User is authenticated, you can now generate a session token or perform other actions
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ message: user.username }));
         });
       });
 
@@ -113,32 +98,35 @@ const server = http.createServer(
       
       req.on('end', () => {
         const { searchType, searchInput } = JSON.parse(body);
-        console.log(searchType+",,,,"+searchInput);
         // Query the database to check if the user exists
       switch (searchType.trim()) {
         case 'public-code':
-          console.log('11111111111');
           connection.query('SELECT * FROM applicant WHERE public_code = ?', [searchInput], (err, results) => {
             if (err) {
-              console.error('Error querying the database: ' + err.stack);
               res.writeHead(500, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ error: 'Internal server error' }));
-              return;
-            }
-    
-            if (results.length === 0) {
+            } else if (results.length === 0) {
               res.writeHead(401, { 'Content-Type': 'application/json' });
-              res.end(JSON.stringify({ error: 'national code not exist' }));
-              return;
+              res.end(JSON.stringify({ error: 'National code does not exist' }));
+            } else {
+        
+              // Assuming you want to perform a second query based on the first query's result
+              educationId = results[0].education_id; // Example: using the applicant's ID for the second query
+        
+              connection.query('SELECT level_name FROM education WHERE id = ?', [educationId], (err2, secondResults) => {
+                if (err2) {
+                  console.error('Error querying the second database: ' + err2.stack);
+                  res.writeHead(500, { 'Content-Type': 'application/json' });
+                  res.end(JSON.stringify({ error: 'Internal server error' }));
+                } else {
+                  console.log('Second Query Result:', secondResults[0]);
+                  res.writeHead(200, { 'Content-Type': 'application/json' });
+                  res.end(JSON.stringify({ message: results[0], education: secondResults[0] }));
+                }
+              });
             }
-            console.log('res:'+results[0].firstname);
-            // User is authenticated, you can now generate a session token or perform other actions
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            //res.end(JSON.stringify({ message: 'Search successful' }));
-            //console.log(results);
-            res.end(JSON.stringify({ message: 'Search successful', data: results }));
           });
-          break;
+          break; 
       }
       });
 
@@ -179,6 +167,7 @@ const server = http.createServer(
           fs.readFile(path.join(__dirname , '404.html'),(err , data) => {
             res.writeHead(404 , {'Content-Type' : 'text/html' });
             res.end(data);
+            return;
           });
         }
       }
@@ -212,7 +201,6 @@ if (err) {
 console.log('Connected to database as id ' + connection.threadId);
 }); 
 
-
 function search_national_verification(req,res){
   let body = '';
       req.on('data', (chunk) => {
@@ -245,9 +233,7 @@ function search_national_verification(req,res){
           res.end(JSON.stringify({ message: 'Search successful', data: results }));
 
         });
-      });
-}
-
+      });}
 function search_national_test(req,res){
   let body = '';
       req.on('data', (chunk) => {
@@ -274,13 +260,7 @@ function search_national_test(req,res){
           }
           // User is authenticated, you can now generate a session token or perform other actions
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          
-          //res.end(JSON.stringify({ message: 'Search successful' }));
-          //console.log(results);
-          res.end(JSON.stringify({ message: 'Search successful', data: results[0] }));
+          res.end(JSON.stringify({ message: results[0] }));
 
         });
-      });
-}
-
-
+      });}
