@@ -1,7 +1,48 @@
+//for home.html
+document.addEventListener('DOMContentLoaded', function() {
+
+  document.getElementById('sign-in-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const phoneNumber = document.getElementById('phone-number').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const response = await fetch('/sign_in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ phoneNumber, password })
+      });
+
+      if (response.ok) {
+
+          data = await response.json();
+          // userName = data.message.username;
+          window.location.href = '/home';
+          try{
+            localStorage.setItem('userName', data.message.username);
+            localStorage.setItem('role', data.message.role_id);
+          }catch(error){ window.alert(error);}
+
+      } else {
+        window.alert("کاربر وجود ندارد");
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+
+});
+
 $(document).ready(function() {
   const signinIcon = $('#signin-icon');
   const backgroundOverlay = $('#background-overlay');
   const signinModal = $('#signin-modal');
+
+  $('#username').text(localStorage.getItem('userName')); 
+  $('#role').text(localStorage.getItem('role')); 
 
   signinIcon.click(function() {
     backgroundOverlay.show();
@@ -68,36 +109,6 @@ $(document).ready(function() {
       $('#enfagh-form').show();
       handleTestFormSubmit();
     });
-// Add the following code to display the username after authentication
-  $(document).ready(function() {
-    const sharedData = require('./app').sharedData;
-    window.alert(JSON.stringify(sharedData));
-    $('#username').text("hiiiii");
-    $('#username').text(JSON.stringify(sharedData));
-    });
 
-
-
-
-    // $('#enfagh-search').click(function() {
-    //   $('form').hide();
-    //   $('#mali-fill-form').show();
-    //   handleVerificationFillFormSubmit();
-    // });
-
-
-    // $('#test-search').click(function() {
-    //   $('form').hide();
-    //   $('#test-fill-form').show();
-    //   handleVerificationFillFormSubmit();
-    // });
-
-  // $('#trust').click(function() {
-  //   $('form').hide();
-  //   $('#trust-form').show();
-  //   handleTrustFormSubmit();
-  // });
-
-  // Add similar event listeners for other forms...
-
+   
 });
