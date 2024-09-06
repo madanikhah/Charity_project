@@ -1,109 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه جستجو</title>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="../icons/amd.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles/styles_temp.css">
+    <link rel="stylesheet" href="../styles/font_style.css">
+    <link rel="stylesheet" href="../styles/search.css">
+
     
-    <meta name="viewport" content="width=device-width, initial-scale=1">  
-  <title>Search Page</title>
-  <link rel="stylesheet" href="../styles/bootstrap.min.css">
-  <link rel="stylesheet" href="../icons/bootstrap-icons.css">
-
-  <!-- <link rel="shortcut icon" class="" href="../icons/amd.svg" type="image/x-icon"> -->
-  <!-- bootstrap icon -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" >
-  <link rel="shortcut icon" style="fill:blue;" href="../icons/amd.svg" type="image/svg+xml">
-<!-- --- -->
-  <!-- <link rel="stylesheet" href="../styles/flex_style.css"> -->
-  <link rel="stylesheet" href="../styles/index_style.css">
-  <link rel="stylesheet" href="../styles/home_style.css">
-  <!-- <link rel="stylesheet" href="../styles/font.css"> -->
-
-  
 </head>
 <body>
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-lg-4">
-        <h1 class="text-center mt-5">جستجو پیشرفته</h1>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">خیریه فرهنگی فاطمیون</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/search.html">جستجو</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/sign_in.html">ورود</a>
+                    </li>
+                </ul>
+            </div> -->
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 py-4">جستجو پیشرفته</h1>
         <form action="/search-results" method="POST" class="mt-4">
-          <div class="form-group">
-            <label for="search-type">جستجو براساس</label>
-            <select class="form-control" id="search-type" name="search-type">
-              <option value=""> یک گزینه را انتخاب کنید </option>
-              <option value="public-code">کد عمومی </option>
-              <option value="last-name">نام خانوادگی</option>
-              <option value="mobile-phone">تلفن همراه</option>
-            </select>
-          </div>
-          <div class="form-group" id="search-input-container">
-          </div>
-          <button type="submit" class="btn btn-primary d-block mx-auto mt-3">جستجو</button>
+            <div class="mb-3 py-4">
+                <label for="search-type" class="form-label">جستجو براساس</label>
+                <select class="form-select" id="search-type" name="search-type">
+                    <option value="">یک گزینه را انتخاب کنید</option>
+                    <option value="public-code">کد عمومی</option>
+                    <option value="last-name">نام خانوادگی</option>
+                    <option value="mobile-phone">تلفن همراه</option>
+                </select>
+            </div>
+            <div class="mb-3" id="search-input-container">
+                <!-- Dynamic input will be added here based on selection -->
+            </div>
+            <button type="submit" class="btn btn-primary d-block mx-auto">جستجو</button>
         </form>
-        <div class="card info-card">
-          <div class="card-body row">
-            <h5 class="card-title" id="fullname"></h5>
 
-            <p class="card-text mb-2"><strong>نام:</strong> <span id="firstname"></span></p>
-            <p class="card-text mb-2"><strong>نام خانوادگی:</strong> <span id="lastname"></span></p>
-            <p class="card-text mb-2"><strong>سال تولد:</strong> <span id="birth"></span></p>
-            <p class="card-text mb-2"><strong>تلفن:</strong> <span id="phone"></span></p>
-            <p class="card-text mb-2"><strong>اعتیاد:</strong> <span id="addiction"></span></p>
-            <p class="card-text mb-2"><strong>تاریخ ارزیابی:</strong> <span id="evaluation"></span></p>
-            <p class="card-text mb-2"><strong>بیماری خاص:</strong> <span id="sickness"></span></p>
-            <p class="card-text mb-2"><strong>نام پشتیبان :</strong> <span id="supporter_id"></span></p>
-            <p class="card-text mb-2"><strong>میزان تحصیلات:</strong> <span id="education_id"></span></p>
-            <p class="card-text mb-2"><strong>کد ملی:</strong> <span id="national_code"></span></p>
-            <p class="card-text mb-2"><strong>نتیجه ارزیابی:</strong> <span id="result_evaluation_id"></span></p>
-            <p class="card-text mb-2"><strong>نوع بیمه:</strong> <span id="bimeh_id"></span></p>
-            <p class="card-text mb-2"><strong>ملیت:</strong> <span id="nationality"></span></p>
-            <p class="card-text mb-2"><strong>شیعه است؟:</strong> <span id="religion"></span></p>
-            <p class="card-text mb-2"><strong>وضعیت تاهل:</strong> <span id="martial_id"></span></p>
-            <p class="card-text mb-2"><strong>تعداد فرزندان متاهل:</strong> <span id="married_child"></span></p>
-            <p class="card-text mb-2"><strong>تعداد فرزندان تحت پوشش:</strong> <span id="under_coverd"></span></p>
-            <p class="card-text mb-2"><strong>آدرس:</strong> <span id="address"></span></p>
-            <p class="card-text mb-2"><strong>تلفن همسر:</strong> <span id="partner_phone"></span></p>
-            <p class="card-text mb-2"><strong>نام همسر:</strong> <span id="partner_firstname"></span></p>
-            <p class="card-text mb-2"><strong>میزان تحصیلات همسر:</strong> <span id="partner_education_id"></span></p>
-            <p class="card-text mb-2"><strong>سال تولد همسر:</strong> <span id="partner_birth"></span></p>
-            <p class="card-text mb-2"><strong>بیماری همسر:</strong> <span id="partner_sickness"></span></p>
-            <p class="card-text mb-2"><strong>اعتیاد همسر:</strong> <span id="partner_addiction"></span></p>
-            <p class="card-text mb-2"><strong>توضیحات همسر:</strong> <span id="partner_description"></span></p>
-            <p class="card-text mb-2"><strong>توضیحات کلی:</strong> <span id="description"></span></p>
-            <p class="card-text mb-2"><strong>نام خانوادگی همسر:</strong> <span id="partner_lastname"></span></p>
-            <p class="card-text mb-2"><strong>تاریخ مصاحبه:</strong> <span id="interview_date"></span></p>
-            <p class="card-text mb-2"><strong>سطح خانواده:</strong> <span id="family_level"></span></p>
-            <p class="card-text mb-2"><strong>سطح رشد:</strong> <span id="roshd_level"></span></p>
-            <p class="card-text mb-2"><strong>صداقت:</strong> <span id="honesty"></span></p>
-            <p class="card-text mb-2"><strong>تقدیر سبد:</strong> <span id="sabad_commend"></span></p>
-            <p class="card-text mb-2"><strong>تقدیر کانون رشد:</strong> <span id="kanoon_roshd_commend"></span></p>
-            <p class="card-text mb-2"><strong>تقدیر قرض حسنه:</strong> <span id="hasane_commend"></span></p>
-            <p class="card-text mb-2"><strong>تقدیر فرهنگی:</strong> <span id="cultural_commend"></span></p>
-            <p class="card-text mb-2"><strong>نسبت درآمد به هزینه:</strong> <span id="income_cost"></span></p>
-            <p class="card-text mb-2"><strong>نام مصاحبه کننده اول ۱:</strong> <span id="interviewer1_id"></span></p>
-            <p class="card-text mb-2"><strong>نام مصاحبه کننده دوم:</strong> <span id="interviewer2_id"></span></p>
-            <p class="card-text mb-2"><strong> نام مصاحبه‌کننده سوم:</strong> <span id="interviewer3_id"></span></p>
-            <p class="card-text mb-2"><strong>توضیخات ضروری:</strong> <span id="necceary"></span></p>
-            <p class="card-text mb-2"><strong>مقدار سبد کالا:</strong> <span id="sabad_amount"></span></p>
-            <p class="card-text mb-2"><strong>شماره کارت:</strong> <span id="cardnumber"></span></p>
-            <p class="card-text mb-2"><strong>لیست سیاه فرهنگی:</strong> <span id="black_cultural"></span></p>
-            <p class="card-text mb-2"><strong>تاریخ شروع عضویت:</strong> <span id="created_at"></span></p>
-            <p class="card-text mb-2"><strong>تعداد انفاق:</strong> <span id="enfagh_count"></span></p>
-            <p class="card-text mb-2"><strong>مجموع انفاق:</strong> <span id="enfagh_sum"></span></p>
-            <p class="card-text mb-2"><strong>مجموع فرهنگی:</strong> <span id="cultrul_sum"></span></p>
-            <p class="card-text mb-2"><strong>تعداد فعالیت های فرهنگی:</strong> <span id="cultrual_count"></span></p>
-            <p class="card-text mb-2"><strong>کد عمومی:</strong> <span id="public_code"></span></p>
-
-          </div>
-      </div>
-
-      </div>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title" id="fullname"></h5>
+                <p class="card-text"><strong>نام:</strong> <span id="firstname"></span></p>
+                <p class="card-text"><strong>نام خانوادگی:</strong> <span id="lastname"></span></p>
+                <p class="card-text"><strong>سال تولد:</strong> <span id="birth"></span></p>
+                <p class="card-text"><strong>تلفن:</strong> <span id="phone"></span></p>
+                <p class="card-text"><strong>اعتیاد:</strong> <span id="addiction"></span></p>
+                <p class="card-text"><strong>تاریخ ارزیابی:</strong> <span id="evaluation"></span></p>
+                <p class="card-text"><strong>بیماری خاص:</strong> <span id="sickness"></span></p>
+                <p class="card-text"><strong>نام پشتیبان:</strong> <span id="supporter_id"></span></p>
+                <p class="card-text"><strong>میزان تحصیلات:</strong> <span id="education_id"></span></p>
+                <p class="card-text"><strong>کد ملی:</strong> <span id="national_code"></span></p>
+                <p class="card-text"><strong>نتیجه ارزیابی:</strong> <span id="result_evaluation_id"></span></p>
+                <p class="card-text"><strong>نوع بیمه:</strong> <span id="bimeh_id"></span></p>
+                <p class="card-text"><strong>ملیت:</strong> <span id="nationality"></span></p>
+                <p class="card-text"><strong>شیعه است؟:</strong> <span id="religion"></span></p>
+                <p class="card-text"><strong>وضعیت تاهل:</strong> <span id="martial_id"></span></p>
+                <p class="card-text"><strong>تعداد فرزندان متاهل:</strong> <span id="married_child"></span></p>
+                <p class="card-text"><strong>تعداد فرزندان تحت پوشش:</strong> <span id="under_coverd"></span></p>
+                <p class="card-text"><strong>آدرس:</strong> <span id="address"></span></p>
+                <p class="card-text"><strong>تلفن همسر:</strong> <span id="partner_phone"></span></p>
+                <p class="card-text"><strong>نام همسر:</strong> <span id="partner_firstname"></span></p>
+                <p class="card-text"><strong>میزان تحصیلات همسر:</strong> <span id="partner_education_id"></span></p>
+                <p class="card-text"><strong>سال تولد همسر:</strong> <span id="partner_birth"></span></p>
+                <p class="card-text"><strong>بیماری همسر:</strong> <span id="partner_sickness"></span></p>
+                <p class="card-text"><strong>اعتیاد همسر:</strong> <span id="partner_addiction"></span></p>
+                <p class="card-text"><strong>توضیحات همسر:</strong> <span id="partner_description"></span></p>
+                <p class="card-text"><strong>توضیحات کلی:</strong> <span id="description"></span></p>
+                <p class="card-text"><strong>نام خانوادگی همسر:</strong> <span id="partner_lastname"></span></p>
+                <p class="card-text"><strong>تاریخ مصاحبه:</strong> <span id="interview_date"></span></p>
+                <p class="card-text"><strong>سطح خانواده:</strong> <span id="family_level"></span></p>
+                <p class="card-text"><strong>سطح رشد:</strong> <span id="roshd_level"></span></p>
+                <p class="card-text"><strong>صداقت:</strong> <span id="honesty"></span></p>
+                <p class="card-text"><strong>تقدیر سبد:</strong> <span id="sabad_commend"></span></p>
+                <p class="card-text"><strong>تقدیر کانون رشد:</strong> <span id="kanoon_roshd_commend"></span></p>
+                <p class="card-text"><strong>تقدیر قرض حسنه:</strong> <span id="hasane_commend"></span></p>
+                <p class="card-text"><strong>تقدیر فرهنگی:</strong> <span id="cultural_commend"></span></p>
+                <p class="card-text"><strong>نسبت درآمد به هزینه:</strong> <span id="income_cost"></span></p>
+                <p class="card-text"><strong>نام مصاحبه کننده اول:</strong> <span id="interviewer1_id"></span></p>
+                <p class="card-text"><strong>نام مصاحبه کننده دوم:</strong> <span id="interviewer2_id"></span></p>
+                <p class="card-text"><strong>نام مصاحبه کننده سوم:</strong> <span id="interviewer3_id"></span></p>
+                <p class="card-text"><strong>توضیحات ضروری:</strong> <span id="necceary"></span></p>
+                <p class="card-text"><strong>مقدار سبد کالا:</strong> <span id="sabad_amount"></span></p>
+                <p class="card-text"><strong>شماره کارت:</strong> <span id="cardnumber"></span></p>
+                <p class="card-text"><strong>لیست سیاه فرهنگی:</strong> <span id="black_cultural"></span></p>
+                <p class="card-text"><strong>تاریخ شروع عضویت:</strong> <span id="created_at"></span></p>
+                <p class="card-text"><strong>تعداد انفاق:</strong> <span id="enfagh_count"></span></p>
+                <p class="card-text"><strong>مجموع انفاق:</strong> <span id="enfagh_sum"></span></p>
+                <p class="card-text"><strong>مجموع فرهنگی:</strong> <span id="cultrul_sum"></span></p>
+                <p class="card-text"><strong>تعداد فعالیت های فرهنگی:</strong> <span id="cultrual_count"></span></p>
+                <p class="card-text"><strong>کد عمومی:</strong> <span id="public_code"></span></p>
+            </div>
+        </div>
     </div>
-  </div>
-  
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../script/bootstrap.min.js"></script>
-  <script src="../script/search.js"></script>
-  <script src="../script/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../script/bootstrap.bundle.min.js"></script>
+    <script src="../script/search.js"></script>
 </body>
 </html>
