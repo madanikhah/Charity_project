@@ -1,0 +1,215 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* +++ */
+
+.card {
+  transition: transform 0.3s, background-color 0.3s;
+  cursor: pointer; /* Change cursor to pointer */
+}
+.card:hover {
+  transform: scale(1.05);
+  background-color: #f0f8ff; /* Light blue background on hover */
+}
+button {
+  cursor: pointer; /* Change cursor to pointer for buttons */
+}
+
+
+:root {
+  
+  --primary-color: #007bff; /* Bootstrap primary color */
+  --hover-color: #0056b3; /* Darker shade for hover */
+  --active-color: #004085; /* Even darker shade for active */
+  --secondary-color: #6c757d; /* Bootstrap secondary color */
+}
+
+.card {
+  background-color: var(--primary-color);
+  color: white; /* Text color */
+  cursor: pointer;
+  transition: background-color 0.7s, transform 0.7s;
+}
+
+.card:hover {
+  background-color: var(--hover-color); /* Change on hover */
+  transform: scale(1.05);
+}
+
+.card:active {
+  background-color: var(--active-color); /* Change on active */
+  transform: scale(0.95);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  transition: background-color 0.3s;
+  cursor: pointer;
+  padding: 10px 20px; /* Add some padding */
+}
+
+button:hover {
+  background-color: var(--hover-color); /* Change on hover */
+}
+
+button:active {
+  background-color: var(--active-color); /* Change on active */
+}
+
+
+/* +++ */
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .navbar-brand {
+            color: #ffffff;
+        }
+        .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+        .hero {
+            background: url('../images/background_pic.jpg') no-repeat center center; 
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .btn-primary {
+            background-color: #28a745; /* Green */
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #218838; /* Darker Green */
+            border-color: #1e7e34;
+        }
+        .card {
+            border-radius: 1rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+  
+
+
+/* برای سطح دسترسی افراد */
+.disabled {
+  pointer-events: none; /* Prevent clicks */
+  opacity: 0.5; /* Make it look disabled */
+}
+
+
+/* Apply the font and color */
+/* * {
+  direction: rtl;
+  font-family: yekan, sans-serif;
+  font-size: 16px;
+  color: #747a7a;
+}
+
+@font-face {
+  font-family: yekan;
+  src: url(../fonts/Iranian\ Sans.ttf);
+} */
+
+/* Horizontal list styles */
+.icon {
+  width: 30px;
+  margin-left: 40px;
+  margin-right: 20px;
+  object-position: center;
+  display: inline-block;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Bottom bar styles */
+.bottom-bar {
+  background-color: #f5f5dc; /* Pale yellow */
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.bottom-bar:hover {
+  background-color: #e6e6b3; /* Slightly darker on hover */
+}
+
+.bottom-bar.active {
+  background-color: #d1d19c; /* Darker on click */
+  color: #333;
+}
+
+.sign_group_form,
+.type-of-orders {
+  border-radius: 5px;
+  text-align: center;
+}
+
+.sign_form,
+.sign {
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 18px;
+  flex-flow: wrap row;
+  justify-content: space-around;
+}
+
+.sign_form:focus,
+.sign:focus {
+  background-color: rgb(170, 225, 235);
+}
+
+.do_center {
+  text-align: center;
+  padding: 10px 10px 10px;
+}
+
+.sign_button {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 7px;
+  color: rgb(67, 63, 63);
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.sign_button:hover {
+  background-color: #3e8e41;
+}
+
+/* Styles for the sign-in modal */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.signin-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  z-index: 2;
+  border-radius: 5px;
+}
