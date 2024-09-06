@@ -1,0 +1,10 @@
+*{
+    direction: rtl;
+    font-family: yekan;
+    font-size: 16px;
+    color: #293f3e;
+}
+@font-face {
+    font-family: yekan;
+    src: url(../fonts/Yekan.ttf);
+}
