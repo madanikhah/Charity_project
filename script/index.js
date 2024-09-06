@@ -1,4 +1,5 @@
 //for home.html
+
 document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('sign-in-form').addEventListener('submit', async (event) => {
@@ -42,7 +43,7 @@ $(document).ready(function() {
   const signinModal = $('#signin-modal');
 
   $('#username').text(localStorage.getItem('userName')); 
-  $('#role').text(localStorage.getItem('role')); 
+  $('#role').text(localStorage.getItem('role'));
 
   signinIcon.click(function() {
     backgroundOverlay.show();
@@ -54,77 +55,142 @@ $(document).ready(function() {
     signinModal.hide();
   });
 
+  // Function to handle showing forms and scrolling to them
+  function showFormAndScroll(formId) {
+    $('form').hide(); // Hide all forms
+    $(formId).show(); // Show the targeted form
+    $('html, body').animate({
+      scrollTop: $(formId).offset().top // Scroll to the top of the form
+    }, 500); // Duration of the scroll animation
+  }
+
   $('#req').click(function() {
-    $('form').hide();
-    $('#req-form').show();
+    showFormAndScroll('#req-form');
     handleReqFormSubmit();
   });
 
   $('#verification').click(function() {
-    $('form').hide();
-    $('#verification-form').show();
+    showFormAndScroll('#verification-form');
     handleVerificationFormSubmit();
   });
 
   $('#search-verification-id').click(function() {
-    $('form').hide();
-    $('#verification-fill-form').show();
+    showFormAndScroll('#verification-fill-form');
     handleVerificationFillFormSubmit();
   });
 
   $('#test').click(function() {
-      $('form').hide();
-      $('#test-form').show();
-      handleTestFormSubmit();
-    });
-
+    showFormAndScroll('#test-form');
+    handleTestFormSubmit();
+  });
 
   $('#interview').click(function() {
-      $('form').hide();
-      $('#interview-form').show();
-      handleTestFormSubmit();
-    });
+    showFormAndScroll('#interview-form');
+    handleTestFormSubmit();
+  });
 
   $('#interview-search').click(function() {
-      $('form').hide();
-      $('#interview-fill-form').show();
-      handleVerificationFillFormSubmit();
-    });
-
+    showFormAndScroll('#interview-fill-form');
+    handleVerificationFillFormSubmit();
+  });
 
   $('#mali').click(function() {
-      $('form').hide();
-      $('#mali-form').show();
-      handleTestFormSubmit();
-    });
+    showFormAndScroll('#mali-form');
+    handleTestFormSubmit();
+  });
 
   $('#mali-search').click(function() {
-      $('form').hide();
-      $('#mali-fill-form').show();
-      handleVerificationFillFormSubmit();
-    });
+    showFormAndScroll('#mali-fill-form');
+    handleVerificationFillFormSubmit();
+  });
 
   $('#enfagh').click(function() {
-      $('form').hide();
-      $('#enfagh-form').show();
-      handleTestFormSubmit();
-    });
+    showFormAndScroll('#enfagh-form');
+    handleTestFormSubmit();
+  });
 
-   
+  $('#status').click(function() {
+    showFormAndScroll('#status-form');
+    handleStatusFormSubmit();
+  });
+
+  $('#farhangi').click(function() {
+    showFormAndScroll('#farhangi-form');
+    handleStatusFormSubmit();
+  });
 });
+
 
 $(document).ready(function() {
-    // Simulate a user role (0 = limited access, 1 = full access)
-    const userRoleId = 0; // Change this to test different roles
+  // Get the role ID from localStorage
+  const roleId = localStorage.getItem('role');
 
-    if (userRoleId === 0) {
-        // Disable other sections for role ID 0
-        $('#verification').prop('disabled', true).closest('label').addClass('disabled');
-        $('#test').prop('disabled', true).closest('label').addClass('disabled');
-        $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+  // Check if roleId is not null and is a number
+  switch(roleId){
+    case '0':
+      // Disable other sections for role ID 0
+      $('#verification').prop('disabled', true).closest('label').addClass('disabled');
+      $('#test').prop('disabled', true).closest('label').addClass('disabled');
+      $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+      $('#mali').prop('disabled', true).closest('label').addClass('disabled');
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
 
-        // Change the color of disabled labels
-        $('.disabled').css('color', 'gray');
-    }
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      break;
+
+    case '1':
+      $('#test').prop('disabled', true).closest('label').addClass('disabled');
+      $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+      $('#mali').prop('disabled', true).closest('label').addClass('disabled');
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      // Full access for role ID 1 (no action needed)
+      break;
+      case '2':
+      $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+      $('#mali').prop('disabled', true).closest('label').addClass('disabled');
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      // Full access for role ID 1 (no action needed)
+      break;
+      case '3':
+      $('#mali').prop('disabled', true).closest('label').addClass('disabled');
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      // Full access for role ID 1 (no action needed)
+      break;
+      case '4':
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      // Full access for role ID 1 (no action needed)
+      break;
+      case '1':
+      break;
+
+  // Add more cases as needed for other roles
+  default:
+      console.warn('Unknown role ID:', roleId);
+      break;
+  }
+
+
+  if(roleId !== null && roleId === '0') {
+      // Disable other sections for role ID 0
+      $('#verification').prop('disabled', true).closest('label').addClass('disabled');
+      $('#test').prop('disabled', true).closest('label').addClass('disabled');
+      $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+  }
 });
-
