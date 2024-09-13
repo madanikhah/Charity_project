@@ -1,77 +1,206 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ویرایش اطلاعات کاربری</title>
+//for home.html
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+document.addEventListener('DOMContentLoaded', function() {
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../styles/font.css">
-    <link rel="stylesheet" href="../styles/edit_profile.css">
-    <!-- <link rel="stylesheet" href="https://startbootstrap.github.io/startbootstrap-freelancer/css/styles.css"> -->
-    <link rel="stylesheet" href="../styles/styles_temp.css">
-    <link rel="stylesheet" href="../styles/font_style.css">
+  document.getElementById('sign-in-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"> خیریه فرهنگی فاطمیون</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">خانه</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">درباره ما</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">تماس با ما</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    const phoneNumber = document.getElementById('phone-number').value;
+    const password = document.getElementById('password').value;
 
-    <!-- Header -->
-    <header class="bg-primary text-white text-center py-5">
-        <div class="container">
-            <h1 class="display-4">ورود</h1>
-            <p class="lead py-4">لطفاً اطلاعات خود را وارد کنید.</p>
-        </div>
-    </header>
+    try {
+      const response = await fetch('/sign_in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ phoneNumber, password })
+      });
 
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <form id="sign-in-form" action="/sign_in" method="POST">
-            <div class="mb-3">
-                <label for="phone-number" class="form-label">شماره همراه</label>
-                <input type="text" class="form-control" id="phone-number" name="phone-number" required>
-            </div>
-            
-            <div class="mb-3">
-                <label for="password" class="form-label">رمز عبور</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">ثبت</button>
-            <button type="button" class="btn btn-secondary">انصراف</button>
-        </form>
-    </div>
+      if (response.ok) {
 
-    <!-- jQuery -->
-    <script src="../script/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="../styles/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="../script/index.js"></script>
-</body>
-</html>
+          data = await response.json();
+          // userName = data.message.username;
+          window.location.href = '/home';
+          try{
+            localStorage.setItem('userName', data.message.username);
+            localStorage.setItem('role', data.message.role_id);
+          }catch(error){ window.alert(error);}
+
+      } else {
+        window.alert("کاربر وجود ندارد");
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+
+});
+
+$(document).ready(function() {
+  const signinIcon = $('#signin-icon');
+  const backgroundOverlay = $('#background-overlay');
+  const signinModal = $('#signin-modal');
+
+  $('#username').text(localStorage.getItem('userName')); 
+  $('#role').text(localStorage.getItem('role'));
+
+  signinIcon.click(function() {
+    backgroundOverlay.show();
+    signinModal.show();
+  });
+
+  backgroundOverlay.click(function() {
+    backgroundOverlay.hide();
+    signinModal.hide();
+  });
+
+  // Function to handle showing forms and scrolling to them
+  function showFormAndScroll(formId) {
+    $('form').hide(); // Hide all forms
+    $(formId).show(); // Show the targeted form
+    $('html, body').animate({
+      scrollTop: $(formId).offset().top // Scroll to the top of the form
+    }, 500); // Duration of the scroll animation
+  }
+
+  $('#req').click(function() {
+    showFormAndScroll('#req-form');
+    window.alert("jjiji");
+    handleReqFormSubmit();
+    window.alert("jqqwqqjiji");
+  });
+
+  $('#verification').click(function() {
+    showFormAndScroll('#verification-form');
+    handleVerificationFormSubmit();
+  });
+
+  $('#search-verification-id').click(function() {
+    showFormAndScroll('#verification-fill-form');
+    handleVerificationFillFormSubmit();
+  });
+
+  $('#test').click(function() {
+    showFormAndScroll('#test-form');
+    handleTestFormSubmit();
+  });
+
+  $('#interview').click(function() {
+    showFormAndScroll('#interview-form');
+    handleTestFormSubmit();
+  });
+
+  $('#interview-search').click(function() {
+    showFormAndScroll('#interview-fill-form');
+    handleVerificationFillFormSubmit();
+  });
+
+  $('#mali').click(function() {
+    showFormAndScroll('#mali-form');
+    handleTestFormSubmit();
+  });
+
+  $('#mali-search').click(function() {
+    showFormAndScroll('#mali-fill-form');
+    handleVerificationFillFormSubmit();
+  });
+
+  $('#enfagh').click(function() {
+    showFormAndScroll('#enfagh-form');
+    handleTestFormSubmit();
+  });
+
+  $('#status').click(function() {
+    showFormAndScroll('#status-form');
+    handleStatusFormSubmit();
+  });
+
+  $('#farhangi').click(function() {
+    showFormAndScroll('#farhangi-form');
+    handleStatusFormSubmit();
+  });
+});
+
+
+$(document).ready(function() {
+  // Get the role ID from localStorage
+  const roleId = localStorage.getItem('role');
+
+  // Check if roleId is not null and is a number
+  switch(roleId){
+    case '0':
+      // Disable other sections for role ID 0
+      $('#verification').prop('disabled', true).closest('label').addClass('disabled');
+      $('#test').prop('disabled', true).closest('label').addClass('disabled');
+      $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+      $('#mali').prop('disabled', true).closest('label').addClass('disabled');
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      break;
+
+    case '1':
+      $('#test').prop('disabled', true).closest('label').addClass('disabled');
+      $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+      $('#mali').prop('disabled', true).closest('label').addClass('disabled');
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      // Full access for role ID 1 (no action needed)
+      break;
+      case '2':
+      $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+      $('#mali').prop('disabled', true).closest('label').addClass('disabled');
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      // Full access for role ID 1 (no action needed)
+      break;
+      case '3':
+      $('#mali').prop('disabled', true).closest('label').addClass('disabled');
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      // Full access for role ID 1 (no action needed)
+      break;
+      case '4':
+      $('#enfagh').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+      // Full access for role ID 1 (no action needed)
+      break;
+      case '1':
+      break;
+
+  // Add more cases as needed for other roles
+  default:
+      console.warn('Unknown role ID:', roleId);
+      break;
+  }
+
+
+  if(roleId !== null && roleId === '0') {
+      // Disable other sections for role ID 0
+      $('#verification').prop('disabled', true).closest('label').addClass('disabled');
+      $('#test').prop('disabled', true).closest('label').addClass('disabled');
+      $('#interview').prop('disabled', true).closest('label').addClass('disabled');
+
+      // Change the color of disabled labels
+      $('.disabled').css('color', 'gray');
+  }
+});
+
+
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function() {
+      // Change the card's background color
+      this.style.backgroundColor = '#e0f0ff'; // Adjust this color as needed
+  });
+});
