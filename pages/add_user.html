@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>افزودن کاربر جدید</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/font.css">
+    <link rel="stylesheet" href="../styles/edit_profile.css">
+    <link rel="stylesheet" href="../styles/styles_temp.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+
+
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">خیریه فرهنگی فاطمیون</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/sign_in.html">ورود</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="edit_profile.html">ویرایش اطلاعات</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<!-- Wave SVG -->
+<svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#f8f9fa" d="M0,64L30,85.3C60,107,120,149,180,165.3C240,181,300,171,360,128C420,85,480,11,540,0C600,-11,660,43,720,64C780,85,840,75,900,69.3C960,64,1020,64,1080,85.3C1140,107,1200,149,1260,170.7C1320,192,1380,192,1410,192L1440,192L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320H0Z"></path>
+</svg>
+
+
+
+
+<div class="hero text-center">
+    <h1> افزودن کاربر جدید</h1>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form id="sign-in-form" action="/sign_in" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">نام و نام خانوادگی</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">نام کاربری</label>
+                            <input type="text" class="form-control" id="username" name="phone-number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone-number" class="form-label">شماره همراه</label>
+                            <input type="number" class="form-control" id="phone-number" name="phone-number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label"> نوع کاربر</label>
+                            <input type="text" class="form-control" id="role" name="role" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">رمز عبور</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">ثبت</button>
+                            <button type="button" class="btn btn-secondary">انصراف</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+        <p class="mb-0"> تمامی حقوق برای خیریه فرهنگی فاطمیون محفوظ است</p>
+        <a href="#" class="text-white">تماس با ما</a> | 
+        <a href="#" class="text-white">درباره ما</a>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="../script/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="../script/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="../script/edit_profile.js"></script>
+</body>
+</html>
