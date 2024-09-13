@@ -52,7 +52,7 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <a href="../pages/search.html" class="btn btn-primary">جستجو متقاضی</a>
+                    <a href="../pages/search.html" class="btn btn-primary">استعلام وضعیت </a>
                 </form>
             </div>
         </div>
@@ -226,23 +226,25 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="phone-req-id" class="form-label">شماره همراه</label>
-                        <input type="text" class="form-control" id="phone-req-id" required>
-                    </div>
-                    <div class="mb-3">
                         <label for="representative-req-id" class="form-label">نام معرف</label>
                         <input type="text" class="form-control" id="representative-req-id" placeholder="مثال: مشهدی">
                       </div>
                     <div class="mb-3">
-                        <label for="date-req-id" class="form-label"> تاریخ مراجعه</label>
+                        <label for="phone-req-id" class="form-label">شماره همراه</label>
+                        <input type="text" class="form-control" id="phone-req-id" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="date-req-id" class="form-label"> تاریخ درخواست</label>
                         <input type="date" class="form-control" id="date-req-id" required>
                     </div>
                     <div class="mb-3">
-                        <label for="level-req-id" class="form-label">سطح پوشش</label>
+                        <label for="level-req-id" class="form-label">نتیجه شناسایی اولیه</label>
                         <select class="form-control" id="level-req-id">
-                          <option>سطح 1</option>
-                          <option>سطح 2</option>
-                          <option>سطح 3</option>
+                            <option> هیچکدام</option>
+                            <option>سطح 1</option>
+                            <option>سطح 2</option>
+                            <option>سطح 3</option>
                         </select>
                       </div>
                     <button type="submit" class="btn btn-primary w-100">ثبت</button>
@@ -275,27 +277,27 @@
                     <h5 class="card-title">شناسایی</h5>
                     <form id="verification2-form">
                         <div class="mb-3">
-                            <label for="date" class="form-label">تاریخ تماس اول</label>
+                            <label for="date-call1-id" class="form-label">تاریخ تماس اول</label>
                             <input type="date" class="form-control" id="date-call1-id" required>
                         </div>
                         <div class="mb-3">
-                            <label for="first-name-visit" class="form-label">نتیجه تماس اول </label>
+                            <label for="result-call1-id" class="form-label">نتیجه تماس اول </label>
                             <input type="text" class="form-control" id="result-call1-id" placeholder="مثال: شمیم" required>
                         </div>
                         <div class="mb-3">
-                            <label for="date" class="form-label">تاریخ تماس دوم</label>
+                            <label for="date-call2-id" class="form-label">تاریخ تماس دوم</label>
                             <input type="date" class="form-control" id="date-call2-id" required>
                         </div>
                         <div class="mb-3">
-                            <label for="first-name-visit" class="form-label">نتیجه تماس دوم </label>
+                            <label for="result-call2-id" class="form-label">نتیجه تماس دوم </label>
                             <input type="text" class="form-control" id="result-call2-id" placeholder="مثال: شمیم" required>
                         </div>
                         <div class="mb-3">
-                            <label for="date" class="form-label">تاریخ تماس سوم</label>
+                            <label for="date-call3-id" class="form-label">تاریخ تماس سوم</label>
                             <input type="date" class="form-control" id="date-call3-id" required>
                         </div>          
                         <div class="mb-3">
-                            <label for="first-name-visit" class="form-label">نتیجه تماس سوم </label>
+                            <label for="result-call3-id" class="form-label">نتیجه تماس سوم </label>
                             <input type="text" class="form-control" id="result-call3-id" placeholder="مثال: شمیم" required>
                         </div>
             
@@ -313,8 +315,9 @@
                 <div class="card-body">
                     <h5 class="card-title">برگه سنجش</h5>
                     <div class="mb-3">
-                        <label for="nationalcode-test-id" class="form-label">کد عمومی</label>
-                        <input type="text" class="form-control" id="nationalcode-test-id" required>
+                        <!-- nationalcode-test-id -->
+                        <label for="publiccode-test-id" class="form-label">کد عمومی</label>
+                        <input type="text" class="form-control" id="publiccode-test-id" required>
                     </div>
                     <button type="submit" class="btn btn-primary">جستجو متقاضی</button>
                 </div>
@@ -333,7 +336,7 @@
                             <!-- وارد کردن نام داده شده از شمیم اینجا انجام شود -->
 
                             <div class="mb-3">
-                                <label for="new-order-type" class="form-label">تحصیلات</label>
+                                <label for="education-id" class="form-label">تحصیلات</label>
                                 <select class="form-control" id="education-id">
                                 <option>بی سواد</option>
                                 <option>پنجم ابتدایی</option>
@@ -349,51 +352,51 @@
 
 
                             <div class="mb-3">
-                                <label for="phone-number" class="form-label"> بیماری خاص/نقص عضو</label>
-                                <input type="text" class="form-control" id="sickness-id" name="phone-number" required>
+                                <label for="sickness-id" class="form-label"> بیماری خاص/نقص عضو</label>
+                                <input type="text" class="form-control" id="sickness-id" name="sickness-id" required>
                             </div>
                         
                             <div class="mb-3">
-                                <label for="new-order-type" class="form-label">اعتیاد</label>
+                                <label for="addiction-id" class="form-label">اعتیاد</label>
                                 <select class="form-control" id="addiction-id">
                                     <option>ندارد</option>
                                     <option>دارد</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="interview-date" class="form-label">تاریخ آخرین ارزیابی</label>
-                                <input type="date" class="form-control" id="interview-date-id" name="phone-number" required>
+                                <label for="interview-date-id" class="form-label">تاریخ آخرین ارزیابی</label>
+                                <input type="date" class="form-control" id="interview-date-id" name="interview-date-id" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="phone-number" class="form-label">توضیحات تکمیلی</label>
-                                <input type="text" class="form-control" id="description-id" name="phone-number" required>
+                                <label for="description-id" class="form-label">توضیحات تکمیلی</label>
+                                <input type="text" class="form-control" id="description-id" name="description-id" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone-number" class="form-label"> پشتیبان</label>
-                                <input type="text" class="form-control" id="supporter-id" name="phone-number" required>
+                                <label for="supporter-id" class="form-label"> پشتیبان</label>
+                                <input type="text" class="form-control" id="supporter-id" name="supporter-id" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone-number" class="form-label"> مذهب</label>
-                                <select class="form-control" id="education-id">
+                                <label for="religion-id" class="form-label"> مذهب</label>
+                                <select class="form-control" id="religion-id">
                                     <option>شیعه</option>
                                     <option>سنی</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="phone-number" class="form-label"> ملیت</label>
-                                <input type="text" class="form-control" id="nationalcode-req-id" name="phone-number" required>
+                                <label for="nationalcode-req-id" class="form-label"> ملیت</label>
+                                <input type="text" class="form-control" id="nationalcode-req-id" name="nationalcode-req-id" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone-number" class="form-label"> وضعیت تاهل</label>
-                                <select class="form-control" id="education-id">
+                                <label for="martial-id" class="form-label"> وضعیت تاهل</label>
+                                <select class="form-control" id="martial-id">
                                     <option>مجرد</option>
                                     <option>متاهل</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="phone-number" class="form-label"> تعداد افراد تحت کفالت</label>
-                                <select class="form-control" id="education-id">
+                                <label for="under-coverd-id" class="form-label"> تعداد افراد تحت کفالت</label>
+                                <select class="form-control" id="under-coverd-id">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -407,8 +410,8 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="phone-number" class="form-label"> تعداد فرزندان متاهل</label>
-                                <select class="form-control" id="education-id">
+                                <label for="martial-child-id" class="form-label"> تعداد فرزندان متاهل</label>
+                                <select class="form-control" id="martial-child-id">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -421,6 +424,18 @@
                                     <option>9</option>
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="new-order-type" class="form-label">نوع بیمه</label>
+                                <select class="form-control" id="bimeh-id">
+                                <option>ندارد</option>
+                                <option>سلامت </option>
+                                <option>کمیته</option>
+                                <option>تامین اجتماعی</option>
+                                
+                                </select>
+                            </div>
+                            <label for="address-id" class="form-label">کد عمومی</label>
+                            <input type="text" class="form-control" id="address-id" required>
                         
                             <button type="submit" class="btn btn-primary">ثبت</button>
                         </form>
