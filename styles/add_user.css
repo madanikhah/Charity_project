@@ -1,0 +1,83 @@
+body {
+  background-color: #f8f9fa;
+}
+.hero {
+  background: url('../images/background_pic.jpg') no-repeat center center; 
+  background-size: cover;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.btn-primary {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  text-align: center;
+  
+}
+
+.btn-primary {
+  margin-right: 10px;
+}
+
+.btn-secondary {
+  margin-right: 10px;
+}
+
+
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Light background */
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.wave {
+  position: absolute;
+  top: -20px; /* Adjust this to position the wave */
+  left: 0;
+  width: 100%;
+  height: 100px; /* Adjust height as needed */
+  fill: #343a40; /* Match the navbar color */
+  z-index: -1; /* Place behind other content */
+}
+
+footer {
+  background-color: #343a40; /* Dark background */
+  color: white; /* White text */
+  text-align: center; /* Centered text */
+  padding: 20px 0; /* Padding for top and bottom */
+  margin-top: auto; /* Push footer to the bottom */
+}
