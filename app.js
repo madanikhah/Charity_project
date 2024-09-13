@@ -8,6 +8,14 @@ const url = require('url');
 const json = require('json');
 express.json();
 
+
+const Education = {
+  1: 'ابتدایی',
+  2: 'سیکل',
+  3: 'دیپلم' ,
+  4: 'کارشناسی',
+  5: 'کارشناسی ارشد'
+}
 //get start to connect to localhost and loading pages
 const server = http.createServer(
   (req, res) => {
@@ -50,6 +58,7 @@ const server = http.createServer(
 
 //js = req_form , form = ثبت نام اولیه
     }else if(req.url == '/submit_request'  && req.method === 'POST'){
+
       let body = '';
       req.on('data', (chunk) => {
         body += chunk.toString();
@@ -101,32 +110,33 @@ const server = http.createServer(
         // Query the database to check if the user exists
       switch (searchType.trim()) {
         case 'public-code':
-          connection.query('SELECT * FROM applicant WHERE public_code = ?', [searchInput], (err, results) => {
+          connection.query('SELECT * FROM applicant WHERE public_code = ?', [searchInput], (err, results1) => {
             if (err) {
               res.writeHead(500, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ error: 'Internal server error' }));
-            } else if (results.length === 0) {
-              res.writeHead(401, { 'Content-Type': 'application/json' });
+
+            } else if (results1.length === 0) {
+              res.writeHead(300, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ error: 'National code does not exist' }));
+
             } else {
-        
-              // Assuming you want to perform a second query based on the first query's result
-              educationId = results[0].education_id; // Example: using the applicant's ID for the second query
-              console.log("............."+educationId+"...............")
-              connection.query('SELECT * FROM education WHERE id = ?', [educationId], (err2, secondResults) => {
-                if (err2) {
-                  console.error('Error querying the second database: ' + err2.stack);
-                  res.writeHead(500, { 'Content-Type': 'application/json' });
-                  res.end(JSON.stringify({ error: 'Internal server error' }));
-                } else {
-                  console.log('Second Query Result:', secondResults[0]);
-                  res.writeHead(200, { 'Content-Type': 'application/json' });
-                  res.end(JSON.stringify({ message: results[0], education: secondResults[0].level_name }));
-                }
-              });
+              applicant = results1[0];
+              applicant.education_id = Education[results1[0].education_id];
+              applicant.partner_education_id = Education[results1[0].partner_education_id];
+             // console.log(applicant);
+             res.writeHead(201, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ message: 1 , data: applicant }));
             }
           });
-          break; 
+        break; 
+        default:
+            // Handle unsupported search types
+            res.writeHead(400, { 
+              'Content-Type': 'application/json',
+              'X-Error-Reason': 'Unsupported search type'
+            });
+            res.end(JSON.stringify({ error: 'Unsupported search type' }));
+        break;
       }
       });
 
@@ -136,7 +146,7 @@ const server = http.createServer(
     //
     let filepath = path.join(__dirname ,  req.url === '/' ? "pages\\index.html": req.url);
     console.log("req.url:  ",req.url);
-    console.log("filepath:    ",filepath);
+   // console.log("filepath:    ",filepath);
     let extname = path.extname(filepath);
     let contenttype = 'text/html';
     switch(extname){
@@ -211,7 +221,7 @@ function search_national_verification(req,res){
       req.on('end', () => {
         const { national } = JSON.parse(body);
         // Query the database to check if the user exists
-        connection.query('SELECT call1_date, call1_result, call2_date, call2_result, call3_date, call3_result FROM verification WHERE national_code = ?', [national], (err, results) => {
+        connection.query('SELECT call1_date, call1_result, call2_date, call2_result, call3_date, call3_result FROM verification WHERE public_code = ?', [national], (err, results) => {
 
           if (err) {
             console.error('Error querying the database: ' + err.stack);
@@ -230,7 +240,7 @@ function search_national_verification(req,res){
           
           //res.end(JSON.stringify({ message: 'Search successful' }));
           console.log(results);
-          res.end(JSON.stringify({ message: 'Search successful', data: results }));
+          res.end(JSON.stringify({ message: 'Search successful', data: results[0] }));
 
         });
       });}
