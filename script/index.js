@@ -66,7 +66,9 @@ $(document).ready(function() {
 
   $('#req').click(function() {
     showFormAndScroll('#req-form');
+    window.alert("jjiji");
     handleReqFormSubmit();
+    window.alert("jqqwqqjiji");
   });
 
   $('#verification').click(function() {
@@ -193,4 +195,12 @@ $(document).ready(function() {
       // Change the color of disabled labels
       $('.disabled').css('color', 'gray');
   }
+});
+
+
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function() {
+      // Change the card's background color
+      this.style.backgroundColor = '#e0f0ff'; // Adjust this color as needed
+  });
 });
